@@ -1,0 +1,59 @@
+{% comment %}KITAB WALA - RELATED PRODUCTS{% endcomment %}
+
+{%- if product.collections.first -%}
+  {%- assign related_collection = product.collections.first -%}
+  {%- assign related_products = related_collection.products | where: 'id', '!=', product.id -%}
+
+  {%- if related_products.size > 0 -%}
+    <section class="products-section section scroll-reveal">
+      <div class="container">
+        <div class="products-header">
+          <h2 class="products-title">
+            {%- if request.locale.iso_code == 'ur' -%}
+              {{ section.settings.title_ur | default: 'متعلقہ کتابیں' }}
+            {%- else -%}
+              {{ section.settings.title_en | default: 'Related Books' }}
+            {%- endif -%}
+          </h2>
+        </div>
+      </div>
+      <div class="products-grid">
+        {%- assign limit = section.settings.products_limit | default: 4 -%}
+        {%- for related_product in related_products limit: limit -%}
+          {% render 'product-card', product: related_product %}
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related Products",
+  "tag": "section",
+  "class": "section-related-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_ur",
+      "label": "Section Title (Urdu)",
+      "default": "متعلقہ کتابیں"
+    },
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Section Title (English)",
+      "default": "Related Books"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 2,
+      "max": 8,
+      "step": 2,
+      "default": 4,
+      "label": "Number of Related Products"
+    }
+  ]
+}
+{% endschema %}

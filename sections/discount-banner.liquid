@@ -1,0 +1,101 @@
+{% comment %}KITAB WALA - DISCOUNT BANNER (Dynamic from global settings){% endcomment %}
+
+<section class="discount-banner scroll-reveal" id="discount-banner" style="background:linear-gradient(135deg, {{ section.settings.bg_color | default: settings.color_primary | default: '#0E3A2F' }} 0%, var(--color-dark-navy) 60%, #0E3A2F 100%);">
+  <div class="discount-tag discount-tag-animated">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {%- if section.settings.discount_tag == 'UPTO 50% DISCOUNT' or section.settings.discount_tag == blank -%}
+        50% تک خصوصی رعایت
+      {%- else -%}
+        {{ section.settings.discount_tag }}
+      {%- endif -%}
+    {%- else -%}
+      {{ section.settings.discount_tag | default: 'UPTO 50% DISCOUNT' }}
+    {%- endif -%}
+  </div>
+  <h2 class="discount-title">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ section.settings.title_ur | default: 'خاص چھوٹ' }}
+    {%- else -%}
+      {{ section.settings.title_en | default: 'Special Discount' }}
+    {%- endif -%}
+  </h2>
+  <p class="discount-subtitle">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {%- if section.settings.subtitle == 'Limited Time Offer — On Selected Books' or section.settings.subtitle == blank -%}
+        محدود وقت کے لیے آفر — منتخب کتب پر
+      {%- else -%}
+        {{ section.settings.subtitle }}
+      {%- endif -%}
+    {%- else -%}
+      {{ section.settings.subtitle | default: 'Limited Time Offer — On Selected Books' }}
+    {%- endif -%}
+  </p>
+  <a href="{{ section.settings.cta_url | default: '/collections/discount' }}" class="discount-cta btn-ripple">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ section.settings.cta_label_ur | default: 'شاپنگ شروع کریں' }}
+    {%- else -%}
+      {{ section.settings.cta_label_en | default: 'Shop Now' }}
+    {%- endif -%}
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Discount Banner",
+  "tag": "section",
+  "class": "section-discount-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "discount_tag",
+      "label": "Discount Tag Text",
+      "default": "UPTO 50% DISCOUNT"
+    },
+    {
+      "type": "text",
+      "id": "title_ur",
+      "label": "Title (Urdu)",
+      "default": "خاص چھوٹ"
+    },
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Title (English)",
+      "default": "Special Discount"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle (English)",
+      "default": "Limited Time Offer — On Selected Books"
+    },
+    {
+      "type": "text",
+      "id": "cta_label_ur",
+      "label": "Button Label (Urdu)",
+      "default": "شاپنگ شروع کریں"
+    },
+    {
+      "type": "text",
+      "id": "cta_label_en",
+      "label": "Button Label (English)",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discount Banner"
+    }
+  ]
+}
+{% endschema %}

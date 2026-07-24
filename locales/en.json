@@ -1,0 +1,140 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "language": {
+      "urdu": "اردو",
+      "english": "English",
+      "punjabi": "پنجابی"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search books by title, author...",
+      "no_results": "No results found for"
+    },
+    "nav": {
+      "menu": "Menu",
+      "close": "Close",
+      "home": "Home",
+      "categories": "Categories",
+      "discount": "Discount",
+      "new_arrivals": "New Arrivals",
+      "upcoming": "Upcoming",
+      "request_book": "Request a Book",
+      "catalogue": "Catalogue",
+      "how_to_pay": "How to Pay",
+      "contact": "Contact Us",
+      "about": "About Us",
+      "sidebar": "Sidebar Navigation",
+      "mobile_bottom": "Mobile Navigation",
+      "main": "Main Navigation",
+      "select_language": "Select Language",
+      "favorites": "Favorites"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "back": "Back",
+    "meta": {
+      "tags": "Tagged {{ tags }}",
+      "page": "Page {{ page }}"
+    },
+    "password_page": {
+      "coming_soon": "Coming Soon"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "order_now": "Order Now",
+      "more_info": "More Info",
+      "sold_out": "Sold Out",
+      "author": "Author",
+      "edition": "Edition",
+      "publisher": "Publisher",
+      "type": "Type",
+      "vendor": "Brand",
+      "reviews": "Reader Reviews",
+      "add_to_wishlist": "Add to Wishlist"
+    },
+    "reviews": {
+      "sample_review_1": "Excellent book, quality is superb and delivery was fast.",
+      "sample_review_2": "Good book, nice packaging."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How long does delivery take?",
+      "a1": "Usually 3-5 business days. Lahore, Karachi, Islamabad receive orders in 1-2 days.",
+      "q2": "What is the return policy?",
+      "a2": "If the book is damaged or incorrect, return within 7 days for a full refund.",
+      "q3": "Is Cash on Delivery available?",
+      "a3": "Yes, COD is available nationwide across Pakistan."
+    }
+  },
+  "collections": {
+    "general": {
+      "product_count": "Books",
+      "no_products": "No books available at this time."
+    },
+    "filters": {
+      "title": "Filter",
+      "clear_all": "Clear All",
+      "price": "Price (Rs)",
+      "rating": "Rating",
+      "availability": "Availability",
+      "in_stock": "In Stock",
+      "out_of_stock": "Out of Stock"
+    },
+    "sorting": {
+      "featured": "Featured",
+      "az": "A–Z",
+      "price_asc": "Price: Low to High",
+      "price_desc": "Price: High to Low",
+      "newest": "Newest",
+      "best_selling": "Best Selling"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Account"
+    }
+  },
+  "search": {
+    "popular": {
+      "title": "Popular:",
+      "quran": "Quran",
+      "hadith": "Hadith",
+      "fiqh": "Fiqh",
+      "children": "Children's Books"
+    }
+  },
+  "footer": {
+    "quick_links": "Quick Links",
+    "customer_service": "Customer Service",
+    "contact_us": "Contact Us",
+    "shipping_info": "Shipping Info",
+    "return_policy": "Return Policy",
+    "faq": "FAQ",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "whatsapp_contact": "Contact on WhatsApp"
+  },
+  "404": {
+    "title": "Page Not Found",
+    "subtext": "Sorry, the page you are looking for does not exist.",
+    "cta": "Go Back Home"
+  }
+}

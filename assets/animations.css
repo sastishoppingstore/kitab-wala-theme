@@ -1,0 +1,305 @@
+/* ============================================
+   KITAB WALA - ANIMATIONS CSS
+   ============================================ */
+
+/* ---------- PAGE LOAD FADE IN ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.5s ease forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.5s ease forwards;
+}
+
+/* Stagger delays */
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+.animate-delay-6 { animation-delay: 0.6s; }
+
+/* ---------- SCROLL REVEAL ---------- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- 3D BOOK ROTATION ---------- */
+.book-3d-wrapper {
+  perspective: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.book-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+
+.book-3d:hover {
+  transform: rotateY(30deg) rotateX(5deg);
+}
+
+/* Auto-spin animation for featured display */
+@keyframes bookSpin {
+  0%   { transform: rotateY(0deg); }
+  25%  { transform: rotateY(20deg) rotateX(4deg); }
+  50%  { transform: rotateY(0deg) rotateX(0deg); }
+  75%  { transform: rotateY(-20deg) rotateX(-4deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+.book-3d.auto-spin {
+  animation: bookSpin 6s ease-in-out infinite;
+}
+
+/* Book shadow */
+.book-3d-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 12px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: var(--transition, all 0.3s ease);
+}
+
+.book-3d:hover ~ .book-3d-shadow {
+  width: 85%;
+  opacity: 0.6;
+}
+
+/* ---------- BUTTON RIPPLE ---------- */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.btn-ripple:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* ---------- HERO BANNER SLIDESHOW ---------- */
+@keyframes slideInFromRight {
+  from { transform: translateX(60px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-60px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide.active .hero-banner-content {
+  animation: slideInFromRight 0.7s ease forwards;
+}
+
+/* ---------- CARD HOVER LIFT ---------- */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+}
+
+/* ---------- PULSE ANIMATION ---------- */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ---------- FLOATING ANIMATION ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ---------- SHIMMER (LOADING SKELETON) ---------- */
+@keyframes shimmer {
+  0%   { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* ---------- STAR RATING FILL ---------- */
+@keyframes starFill {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.star-animated {
+  animation: starFill 0.3s ease backwards;
+}
+
+/* ---------- NOTIFICATION / TOAST ---------- */
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.toast-notification {
+  animation: slideDown 0.4s ease forwards;
+}
+
+/* ---------- SEARCH BAR EXPAND ---------- */
+.search-expand {
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.4s ease;
+}
+
+.search-expand.open {
+  max-width: 400px;
+}
+
+/* ---------- SIDEBAR SLIDE ---------- */
+@keyframes sidebarIn {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- PROMO BANNER ELEMENTS ---------- */
+@keyframes bounceTag {
+  0%, 100% { transform: scale(1) rotate(-2deg); }
+  50%       { transform: scale(1.06) rotate(2deg); }
+}
+
+.discount-tag-animated {
+  animation: bounceTag 2.5s ease-in-out infinite;
+}
+
+/* ---------- IMAGE ZOOM (pinch zoom) ---------- */
+.img-zoomable {
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  cursor: zoom-in;
+}
+
+.img-zoomable.zoomed {
+  transform: scale(1.8);
+  cursor: zoom-out;
+}
+
+/* ---------- SPINNER ---------- */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,149,0,0.2);
+  border-top-color: #ff9500;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+/* ---------- WISHLIST HEART BEAT ---------- */
+@keyframes heartBeat {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.3); }
+  30%  { transform: scale(1); }
+  45%  { transform: scale(1.2); }
+  60%  { transform: scale(1); }
+}
+
+.heart-beat {
+  animation: heartBeat 0.6s ease;
+}

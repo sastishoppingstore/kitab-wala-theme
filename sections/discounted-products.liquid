@@ -1,0 +1,115 @@
+{% comment %}
+  KITAB WALA - DISCOUNTED PRODUCTS GRID
+  2-column app-style grid with product cards
+{% endcomment %}
+
+<section class="app-arrivals section scroll-reveal">
+  <div class="app-arrivals-header">
+    <h2 class="app-arrivals-title">
+      {%- if request.locale.iso_code == 'ur' -%}
+        {{ section.settings.title_ur | default: 'رعایتی قیمت والی کتابیں' }}
+      {%- else -%}
+        {{ section.settings.title_en | default: 'Discounted Books' }}
+      {%- endif -%}
+    </h2>
+    <a href="{{ section.settings.collection_url | default: '/collections/all' }}" class="app-arrivals-view">
+      {%- if request.locale.iso_code == 'ur' -%}
+        {{ section.settings.view_all_label | default: 'سب دیکھیں' }}
+      {%- else -%}
+        {{ section.settings.view_all_label_en | default: 'View All' }}
+      {%- endif -%} →
+    </a>
+  </div>
+  <div class="app-arrivals-grid">
+    {%- assign limit = section.settings.products_limit | default: 8 -%}
+    {%- if section.settings.collection != blank -%}
+      {%- assign featured = collections[section.settings.collection] -%}
+      {%- for product in featured.products limit: limit -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for product in collections.all.products limit: limit -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+  {%- if section.settings.show_view_all_btn -%}
+    <div class="app-arrivals-footer">
+      <a href="{{ section.settings.collection_url | default: '/collections/all' }}" class="btn btn-primary">
+        {%- if request.locale.iso_code == 'ur' -%}
+          {{ section.settings.view_all_label | default: 'سب دیکھیں' }}
+        {%- else -%}
+          {{ section.settings.view_all_label_en | default: 'View All' }}
+        {%- endif -%}
+      </a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Discounted Books",
+  "tag": "section",
+  "class": "section-discounted-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_ur",
+      "label": "Section Title (Urdu)",
+      "default": "رعایتی قیمت والی کتابیں"
+    },
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Section Title (English)",
+      "default": "Discounted Books"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "url",
+      "id": "collection_url",
+      "label": "View All URL"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All Label (Urdu)",
+      "default": "سب دیکھیں"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label_en",
+      "label": "View All Label (English)",
+      "default": "View All"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 2,
+      "max": 16,
+      "step": 2,
+      "default": 8,
+      "label": "Number of Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all_btn",
+      "label": "Show View All Button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discounted Books",
+      "settings": {
+        "title_ur": "رعایتی قیمت والی کتابیں",
+        "title_en": "Discounted Books"
+      }
+    }
+  ]
+}
+{% endschema %}

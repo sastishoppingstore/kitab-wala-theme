@@ -1,0 +1,158 @@
+{% comment %}KITAB WALA - COLLECTION / CATEGORY PAGE{% endcomment %}
+
+{% paginate collection.products by 24 %}
+<div class="collection-page">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" style="font-size:0.8rem;color:var(--color-text-light);margin-bottom:16px;">
+    <a href="{{ routes.root_url }}" style="color:var(--color-orange);">
+      {%- if request.locale.iso_code == 'ur' -%}ہوم{%- else -%}Home{%- endif -%}
+    </a>
+    <span style="margin:0 6px;">›</span>
+    <a href="{{ routes.collections_url }}" style="color:var(--color-orange);">
+      {%- if request.locale.iso_code == 'ur' -%}اقسام{%- else -%}Categories{%- endif -%}
+    </a>
+    <span style="margin:0 6px;">›</span>
+    <span>{{ collection.title }}</span>
+  </nav>
+
+  <!-- Collection Header -->
+  {%- if collection.image -%}
+    <div style="position:relative;border-radius:12px;overflow:hidden;margin-bottom:24px;min-height:160px;">
+      <img src="{{ collection.image | image_url: width: 1200 }}" alt="{{ collection.title }}" loading="eager" style="width:100%;height:160px;object-fit:cover;">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,58,47,.7),transparent);display:flex;align-items:center;padding:24px;">
+        <h1 style="color:white;font-size:1.6rem;{% if request.locale.iso_code == 'ur' %}font-family:'Noto Nastaliq Urdu',serif;direction:rtl;{% endif %}">{{ collection.title }}</h1>
+      </div>
+    </div>
+  {%- else -%}
+    <h1 style="font-size:1.5rem;color:var(--color-primary);margin-bottom:16px;{% if request.locale.iso_code == 'ur' %}font-family:'Noto Nastaliq Urdu',serif;direction:rtl;{% endif %}">{{ collection.title }}</h1>
+  {%- endif -%}
+
+  {%- if collection.description != blank -%}
+    <p style="font-size:0.88rem;color:var(--color-text-secondary);margin-bottom:20px;line-height:1.7;">{{ collection.description }}</p>
+  {%- endif -%}
+
+  <!-- Mobile Filter Toggle -->
+  <button id="filter-toggle" style="display:none;margin-bottom:12px;padding:10px 16px;border:2px solid var(--color-primary);border-radius:8px;color:var(--color-primary);background:white;font-size:0.85rem;cursor:pointer;width:100%;" class="mobile-only">
+    {%- if request.locale.iso_code == 'ur' -%}فلٹر کریں ☰{%- else -%}Filter ☰{%- endif -%}
+  </button>
+
+  <div class="collection-layout">
+    <!-- Sidebar Filters -->
+    <aside id="filter-panel" class="collection-filters" aria-label="{%- if request.locale.iso_code == 'ur' -%}فلٹر{%- else -%}Filters{%- endif -%}">
+      <div class="filter-title">
+        {%- if request.locale.iso_code == 'ur' -%}فلٹر{%- else -%}Filters{%- endif -%}
+        <a href="{{ collection.url }}" style="font-size:0.75rem;color:var(--color-orange);">
+          {%- if request.locale.iso_code == 'ur' -%}صاف کریں{%- else -%}Clear All{%- endif -%}
+        </a>
+      </div>
+
+      <!-- Price Filter -->
+      <div class="filter-group">
+        <p class="filter-label">{%- if request.locale.iso_code == 'ur' -%}قیمت (Rs){%- else -%}Price (Rs){%- endif -%}</p>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="number" placeholder="{%- if request.locale.iso_code == 'ur' -%}کم{%- else -%}Min{%- endif -%}" style="width:70px;padding:6px;border:1px solid var(--color-border);border-radius:6px;font-size:0.82rem;" name="filter.v.price.gte">
+          <span>—</span>
+          <input type="number" placeholder="{%- if request.locale.iso_code == 'ur' -%}زیادہ{%- else -%}Max{%- endif -%}" style="width:70px;padding:6px;border:1px solid var(--color-border);border-radius:6px;font-size:0.82rem;" name="filter.v.price.lte">
+        </div>
+      </div>
+
+      <!-- Rating Filter -->
+      <div class="filter-group">
+        <p class="filter-label">{%- if request.locale.iso_code == 'ur' -%}درجہ بندی{%- else -%}Rating{%- endif -%}</p>
+        <div class="filter-options">
+          <label class="filter-checkbox"><input type="checkbox"> ⭐⭐⭐⭐⭐ (5)</label>
+          <label class="filter-checkbox"><input type="checkbox"> ⭐⭐⭐⭐ (4+)</label>
+          <label class="filter-checkbox"><input type="checkbox"> ⭐⭐⭐ (3+)</label>
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div class="filter-group">
+        <p class="filter-label">{%- if request.locale.iso_code == 'ur' -%}دستیابی{%- else -%}Availability{%- endif -%}</p>
+        <div class="filter-options">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="filter.v.availability" value="1"> 
+            {%- if request.locale.iso_code == 'ur' -%}اسٹاک میں{%- else -%}In Stock{%- endif -%}
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="filter.v.availability" value="0"> 
+            {%- if request.locale.iso_code == 'ur' -%}اسٹاک ختم{%- else -%}Out of Stock{%- endif -%}
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <div>
+      <!-- Sort Bar -->
+      <div class="sort-bar">
+        <span style="font-size:0.85rem;color:var(--color-text-secondary);">
+          {{ collection.products_count }} 
+          {%- if request.locale.iso_code == 'ur' -%}کتابیں{%- else -%}Books{%- endif -%}
+        </span>
+        <select class="sort-select" name="sort_by" onchange="window.location.search='?sort_by='+this.value;">
+          <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}فیچرڈ{%- else -%}Featured{%- endif -%}
+          </option>
+          <option value="title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}A-Z{%- else -%}A-Z{%- endif -%}
+          </option>
+          <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}قیمت: کم سے زیادہ{%- else -%}Price: Low to High{%- endif -%}
+          </option>
+          <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}قیمت: زیادہ سے کم{%- else -%}Price: High to Low{%- endif -%}
+          </option>
+          <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}نئی آمد{%- else -%}Newest{%- endif -%}
+          </option>
+          <option value="best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>
+            {%- if request.locale.iso_code == 'ur' -%}بیسٹ سیلنگ{%- else -%}Best Selling{%- endif -%}
+          </option>
+        </select>
+      </div>
+
+      <div class="products-grid" style="padding:0;">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product, collection: collection %}
+        {%- else -%}
+          <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+            <div style="font-size:3rem;margin-bottom:16px;">📚</div>
+            <h3 style="color:var(--color-primary);{% if request.locale.iso_code == 'ur' %}font-family:'Noto Nastaliq Urdu',serif;direction:rtl;{% endif %}">
+              {%- if request.locale.iso_code == 'ur' -%}اس وقت کوئی کتاب دستیاب نہیں{%- else -%}No books available at this time.{%- endif -%}
+            </h3>
+            <a href="{{ routes.root_url }}" class="btn btn-orange" style="margin-top:16px;">
+              {%- if request.locale.iso_code == 'ur' -%}ہوم پر واپس{%- else -%}Go Back Home{%- endif -%}
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <!-- Pagination -->
+      {%- if paginate.pages > 1 -%}
+        <div style="display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap;">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="btn btn-outline" style="padding:8px 16px;">
+              ← {%- if request.locale.iso_code == 'ur' -%}پچھلا{%- else -%}Previous{%- endif -%}
+            </a>
+          {%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}" style="padding:8px 14px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-text-primary);text-decoration:none;">{{ part.title }}</a>
+            {%- else -%}
+              <span style="padding:8px 14px;background:var(--color-primary);color:white;border-radius:6px;">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="btn btn-outline" style="padding:8px 16px;">
+              {%- if request.locale.iso_code == 'ur' -%}اگلا{%- else -%}Next{%- endif -%} →
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+{% endpaginate %}

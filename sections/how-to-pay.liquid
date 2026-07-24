@@ -1,0 +1,169 @@
+{% comment %}KITAB WALA - HOW TO PAY{% endcomment %}
+
+<section class="how-to-pay section scroll-reveal" id="how-to-pay">
+  <div class="container">
+    {%- assign section_title = section.settings.title_en | default: 'Payment Methods' -%}
+    {%- if request.locale.iso_code == 'ur' -%}
+      {%- if section_title == 'Payment Methods' or section_title == 'Payment' -%}
+        {%- assign section_title = 'ادائیگی کے طریقے' -%}
+      {%- endif -%}
+    {%- endif -%}
+    <div class="products-header">
+      <h2 class="products-title">
+        {{ section_title }}
+      </h2>
+    </div>
+    <div class="pay-steps-grid">
+      {%- for block in section.blocks -%}
+        {%- assign block_title = block.settings.title_en | default: 'Payment' -%}
+        {%- assign block_desc = block.settings.description | default: 'Safe and secure payment' -%}
+        {%- if request.locale.iso_code == 'ur' -%}
+          {%- case block_title -%}
+            {%- when 'Credit / Debit Card' -%}{%- assign block_title = 'کریڈٹ / ڈیبٹ کارڈ' -%}
+            {%- when 'Credit Card' -%}{%- assign block_title = 'کریڈٹ کارڈ' -%}
+            {%- when 'Mobile Wallet' -%}{%- assign block_title = 'موبائل والٹ' -%}
+            {%- when 'Easypaisa' -%}{%- assign block_title = 'ایزی پیسہ' -%}
+            {%- when 'JazzCash' -%}{%- assign block_title = 'جاز کیش' -%}
+            {%- when 'Cash on Delivery' -%}{%- assign block_title = 'کیش آن ڈلیوری' -%}
+            {%- when 'Bank Transfer' -%}{%- assign block_title = 'بینک ٹرانسفر' -%}
+          {%- endcase -%}
+          {%- case block_desc -%}
+            {%- when 'Visa, MasterCard, UnionPay' -%}{%- assign block_desc = 'ویزہ، ماسٹر کارڈ، یونین پے' -%}
+            {%- when 'JazzCash, Easypaisa' -%}{%- assign block_desc = 'جاز کیش، ایزی پیسہ' -%}
+            {%- when 'Transfer to our Easypaisa wallet' -%}{%- assign block_desc = 'ہمارے ایزی پیسہ والٹ میں ٹرانسفر کریں' -%}
+            {%- when 'Transfer to our JazzCash wallet' -%}{%- assign block_desc = 'ہمارے جاز کیش والٹ میں ٹرانسفر کریں' -%}
+            {%- when 'Cash on Delivery (COD)' -%}{%- assign block_desc = 'کیش آن ڈلیوری (COD)' -%}
+            {%- when 'Direct Bank Transfer' -%}{%- assign block_desc = 'براہِ راست بینک ٹرانسفر' -%}
+          {%- endcase -%}
+        {%- endif -%}
+        <div class="pay-step-card scroll-reveal" {{ block.shopify_attributes }}>
+          <div class="pay-step-icon" style="height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 120 }}" alt="{{ block_title }}" style="max-height: 48px; max-width: 48px; object-fit: contain;">
+            {%- elsif block.settings.logo_url != blank -%}
+              <img src="{{ block.settings.logo_url }}" alt="{{ block_title }}" style="max-height: 48px; max-width: 120px; object-fit: contain;">
+            {%- else -%}
+              <span style="font-size: 2rem;">{{ block.settings.emoji | default: '💳' }}</span>
+            {%- endif -%}
+          </div>
+          <p class="pay-step-title-ur" style="font-family: inherit; direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %}; font-weight: 700; margin-bottom: 6px;">
+            {{ block_title }}
+          </p>
+          <p class="pay-step-desc" style="direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %};">
+            {{ block_desc }}
+          </p>
+        </div>
+      {%- else -%}
+        <!-- Default fallback cards -->
+        <div class="pay-step-card">
+          <div class="pay-step-icon" style="height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_j2cx6bj2cx6bj2cx_99d5509b-f342-4b07-9c80-64235438302c.png?v=1784899128" alt="Credit / Debit Card" style="max-height: 48px; max-width: 100%; object-fit: contain;">
+          </div>
+          <p class="pay-step-title-ur" style="font-family: inherit; direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %}; font-weight: 700; margin-bottom: 6px;">
+            {%- if request.locale.iso_code == 'ur' -%}کریڈٹ / ڈیبٹ کارڈ{%- else -%}Credit / Debit Card{%- endif -%}
+          </p>
+          <p class="pay-step-desc" style="direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %};">
+            {%- if request.locale.iso_code == 'ur' -%}ویزہ، ماسٹر کارڈ، یونین پے{%- else -%}Visa, MasterCard, UnionPay{%- endif -%}
+          </p>
+        </div>
+        <div class="pay-step-card">
+          <div class="pay-step-icon" style="height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_qh6xa8qh6xa8qh6x_c34f529f-9223-468a-a209-a24ad9138853.png?v=1784899130" alt="Mobile Wallet" style="max-height: 48px; max-width: 100%; object-fit: contain;">
+          </div>
+          <p class="pay-step-title-ur" style="font-family: inherit; direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %}; font-weight: 700; margin-bottom: 6px;">
+            {%- if request.locale.iso_code == 'ur' -%}موبائل والٹ{%- else -%}Mobile Wallet{%- endif -%}
+          </p>
+          <p class="pay-step-desc" style="direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %};">
+            {%- if request.locale.iso_code == 'ur' -%}جاز کیش، ایزی پیسہ{%- else -%}JazzCash, Easypaisa{%- endif -%}
+          </p>
+        </div>
+        <div class="pay-step-card">
+          <div class="pay-step-icon" style="height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_as4gbaas4gbaas4g_d42b9eae-624e-41d9-99dd-11b59519130d.png?v=1784899130" alt="Cash on Delivery" style="max-height: 48px; max-width: 100%; object-fit: contain;">
+          </div>
+          <p class="pay-step-title-ur" style="font-family: inherit; direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %}; font-weight: 700; margin-bottom: 6px;">
+            {%- if request.locale.iso_code == 'ur' -%}کیش آن ڈلیوری{%- else -%}Cash on Delivery{%- endif -%}
+          </p>
+          <p class="pay-step-desc" style="direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %};">
+            {%- if request.locale.iso_code == 'ur' -%}کیش آن ڈلیوری (COD){%- else -%}Cash on Delivery (COD){%- endif -%}
+          </p>
+        </div>
+        <div class="pay-step-card">
+          <div class="pay-step-icon" style="height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_cvri0tcvri0tcvri.png?v=1784899129" alt="Bank Transfer" style="max-height: 48px; max-width: 100%; object-fit: contain;">
+          </div>
+          <p class="pay-step-title-ur" style="font-family: inherit; direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %}; font-weight: 700; margin-bottom: 6px;">
+            {%- if request.locale.iso_code == 'ur' -%}بینک ٹرانسفر{%- else -%}Bank Transfer{%- endif -%}
+          </p>
+          <p class="pay-step-desc" style="direction: {% if request.locale.iso_code == 'ur' %}rtl{% else %}ltr{% endif %};">
+            {%- if request.locale.iso_code == 'ur' -%}براہِ راست بینک ٹرانسفر{%- else -%}Direct Bank Transfer{%- endif -%}
+          </p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How To Pay",
+  "tag": "section",
+  "class": "section-how-to-pay",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Section Title (English)",
+      "default": "Payment Methods"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "payment_method",
+      "name": "Payment Method",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Payment Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "logo_url",
+          "label": "Online Logo Image URL"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji Icon (Fallback)",
+          "default": "💳"
+        },
+        {
+          "type": "text",
+          "id": "title_en",
+          "label": "Title (English)",
+          "default": "Credit Card"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description (English)",
+          "default": "Visa, MasterCard accepted"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Pay",
+      "blocks": [
+        {"type":"payment_method","settings":{"emoji":"💳","title_en":"Credit / Debit Card","description":"Visa, MasterCard, UnionPay","logo_url":"https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_j2cx6bj2cx6bj2cx_99d5509b-f342-4b07-9c80-64235438302c.png?v=1784899128"}},
+        {"type":"payment_method","settings":{"emoji":"📱","title_en":"Mobile Wallet","description":"JazzCash, Easypaisa","logo_url":"https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_qh6xa8qh6xa8qh6x_c34f529f-9223-468a-a209-a24ad9138853.png?v=1784899130"}},
+        {"type":"payment_method","settings":{"emoji":"🚚","title_en":"Cash on Delivery","description":"Cash on Delivery (COD)","logo_url":"https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_as4gbaas4gbaas4g_d42b9eae-624e-41d9-99dd-11b59519130d.png?v=1784899130"}},
+        {"type":"payment_method","settings":{"emoji":"🏦","title_en":"Bank Transfer","description":"Direct Bank Transfer","logo_url":"https://cdn.shopify.com/s/files/1/0797/8654/1241/files/Gemini_Generated_Image_cvri0tcvri0tcvri.png?v=1784899129"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

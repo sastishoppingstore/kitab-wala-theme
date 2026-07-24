@@ -1,0 +1,140 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "language": {
+      "urdu": "اردو",
+      "english": "English",
+      "punjabi": "پنجابی"
+    },
+    "search": {
+      "search": "ਖੋਜ / تلاش",
+      "placeholder": "کتاب تلاش کرو...",
+      "no_results": "کوئی نتیجہ نہیں"
+    },
+    "nav": {
+      "menu": "مینو",
+      "close": "بند کرو",
+      "home": "گھر",
+      "categories": "قسمیں",
+      "discount": "ڈسکاؤنٹ",
+      "new_arrivals": "نویاں کتابیں",
+      "upcoming": "آਉਣ ਵਾਲੀਆਂ ਕਿਤਾਬਾਂ / آنے والی کتابیں",
+      "request_book": "کتاب منگوایئے",
+      "catalogue": "کیٹالاگ",
+      "how_to_pay": "ادائیگی",
+      "contact": "رابطہ",
+      "about": "ساڈے بارے",
+      "sidebar": "سائیڈ مینو",
+      "mobile_bottom": "موبائل نیویگیشن",
+      "main": "مرکزی نیویگیشن",
+      "select_language": "بولی چنو / زبان منتخب کریں",
+      "favorites": "پسندیدہ"
+    },
+    "pagination": {
+      "previous": "پچھلا",
+      "next": "اگلا"
+    },
+    "back": "واپس",
+    "meta": {
+      "tags": "ٹیگ: {{ tags }}",
+      "page": "صفحہ {{ page }}"
+    },
+    "password_page": {
+      "coming_soon": "جلد آ رہا اے"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "کارٹ وچ پاؤ",
+      "order_now": "آرڈر دیو",
+      "more_info": "ہور معلومات",
+      "sold_out": "ختم ہو گیا",
+      "author": "مصنف",
+      "edition": "ایڈیشن",
+      "publisher": "ناشر",
+      "type": "قسم",
+      "vendor": "برانڈ",
+      "reviews": "پڑھنے والیاں دی رائے",
+      "add_to_wishlist": "پسندیدہ وچ شامل"
+    },
+    "reviews": {
+      "sample_review_1": "بہت عمدہ کتاب اے، تیز ترسیل ملی۔",
+      "sample_review_2": "چنگی کتاب اے، پیکنگ وی چنگی سی۔"
+    },
+    "faq": {
+      "title": "عام سوالات",
+      "q1": "ترسیل وچ کنا وقت لگدا اے؟",
+      "a1": "عام طور تے 3-5 دن لگدے نے۔",
+      "q2": "واپسی دی پالیسی کی اے؟",
+      "a2": "7 دناں وچ واپس کرو، پوری رقم واپس ملے گی۔",
+      "q3": "کیا COD دستیاب اے؟",
+      "a3": "ہاں، پاکستان بھر وچ COD دستیاب اے۔"
+    }
+  },
+  "collections": {
+    "general": {
+      "product_count": "کتابیں",
+      "no_products": "ہن کوئی کتاب دستیاب نہیں"
+    },
+    "filters": {
+      "title": "فلٹر",
+      "clear_all": "صاف کرو",
+      "price": "قیمت",
+      "rating": "درجہ بندی",
+      "availability": "دستیابی",
+      "in_stock": "موجود اے",
+      "out_of_stock": "ختم ہو گیا"
+    },
+    "sorting": {
+      "featured": "فیچرڈ",
+      "az": "A–Z",
+      "price_asc": "قیمت: گھٹ توں ودھ",
+      "price_desc": "قیمت: ودھ توں گھٹ",
+      "newest": "نویاں آمد",
+      "best_selling": "بیسٹ سیلنگ"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "کارٹ"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "اکاؤنٹ"
+    }
+  },
+  "search": {
+    "popular": {
+      "title": "مشہور:",
+      "quran": "قرآن",
+      "hadith": "حدیث",
+      "fiqh": "فقہ",
+      "children": "بچیاں دیاں کتابیں"
+    }
+  },
+  "footer": {
+    "quick_links": "تیز لنکس",
+    "customer_service": "کسٹمر سروس",
+    "contact_us": "رابطہ کرو",
+    "shipping_info": "ترسیل دی معلومات",
+    "return_policy": "واپسی پالیسی",
+    "faq": "عام سوالات",
+    "privacy": "پرائیویسی",
+    "terms": "شرطاں",
+    "whatsapp_contact": "WhatsApp تے رابطہ کرو"
+  },
+  "404": {
+    "title": "صفحہ نہیں ملیا",
+    "subtext": "معافی، تسی جو صفحہ لبھ رہے او اوہ نہیں اے۔",
+    "cta": "گھر ول واپس جاؤ"
+  }
+}

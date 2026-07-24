@@ -1,0 +1,114 @@
+{% comment %}KITAB WALA - NEWSLETTER SIGNUP (Dynamic from global settings){% endcomment %}
+
+<section class="newsletter-section section scroll-reveal" id="newsletter">
+  <h2 class="newsletter-title-ur">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ section.settings.title_ur | default: 'آخری اپڈیٹس حاصل کریں' }}
+    {%- else -%}
+      {{ section.settings.title_en | default: 'Subscribe to Newsletter' }}
+    {%- endif -%}
+  </h2>
+  <p class="newsletter-subtitle">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ section.settings.subtitle_ur | default: 'نئی کتب، رعایت اور دیگر اپڈیٹس حاصل کریں' }}
+    {%- else -%}
+      {{ section.settings.subtitle_en | default: 'Get Latest Updates — New Books, Discounts & More' }}
+    {%- endif -%}
+  </p>
+
+  <form id="newsletter-form" class="newsletter-form" method="post" action="/contact">
+    <input type="hidden" name="form_type" value="customer">
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input
+      class="newsletter-input"
+      type="email"
+      name="contact[email]"
+      placeholder="{%- if request.locale.iso_code == 'ur' -%}{{ section.settings.email_placeholder_ur | default: 'آپ کی ای میل درج کریں' }}{%- else -%}{{ section.settings.email_placeholder_en | default: 'Enter your email address' }}{%- endif -%}"
+      required
+    >
+    <button type="submit" class="newsletter-btn btn-ripple">
+      {%- if request.locale.iso_code == 'ur' -%}
+        {{ section.settings.btn_label_ur | default: 'رجسٹر کریں' }}
+      {%- else -%}
+        {{ section.settings.btn_label_en | default: 'Subscribe' }}
+      {%- endif -%}
+    </button>
+  </form>
+
+  <p style="font-size:0.75rem;color:#999;margin-top:12px;">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ section.settings.privacy_note_ur | default: 'ہم آپ کی ای میل کسی کے ساتھ شیئر نہیں کریں گے' }}
+    {%- else -%}
+      {{ section.settings.privacy_note_en | default: 'We value your privacy. We will never share your email address.' }}
+    {%- endif -%}
+  </p>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section-newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_ur",
+      "label": "Title (Urdu)",
+      "default": "آخری اپڈیٹس حاصل کریں"
+    },
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Title (English)",
+      "default": "Subscribe to Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_en",
+      "label": "Subtitle (English)",
+      "default": "Get Latest Updates — New Books, Discounts & More"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder_ur",
+      "label": "Email Placeholder (Urdu)",
+      "default": "آپ کی ای میل درج کریں"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder_en",
+      "label": "Email Placeholder (English)",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "btn_label_ur",
+      "label": "Button Label (Urdu)",
+      "default": "رجسٹر کریں"
+    },
+    {
+      "type": "text",
+      "id": "btn_label_en",
+      "label": "Button Label (English)",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "privacy_note_ur",
+      "label": "Privacy Note (Urdu)",
+      "default": "ہم آپ کی ای میل کسی کے ساتھ شیئر نہیں کریں گے"
+    },
+    {
+      "type": "text",
+      "id": "privacy_note_en",
+      "label": "Privacy Note (English)",
+      "default": "We value your privacy. We will never share your email address."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

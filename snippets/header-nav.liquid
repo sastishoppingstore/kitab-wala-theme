@@ -1,0 +1,18 @@
+{% comment %}
+  KITAB WALA - HEADER NAV SNIPPET
+  Renders a list of nav links for use in header.
+{% endcomment %}
+
+{%- if linklists[section.settings.menu] != blank -%}
+  {%- for link in linklists[section.settings.menu].links -%}
+    <li>
+      <a
+        href="{{ link.url }}"
+        {% if link.current %}aria-current="page"{% endif %}
+        class="{% if link.active %}active{% endif %}"
+      >
+        {{ link.title }}
+      </a>
+    </li>
+  {%- endfor -%}
+{%- endif -%}

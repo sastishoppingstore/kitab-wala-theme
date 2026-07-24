@@ -1,0 +1,26 @@
+{% comment %}KITAB WALA - 404 NOT FOUND PAGE{% endcomment %}
+
+<div style="text-align:center;padding:80px 24px;max-width:600px;margin:0 auto;">
+  <div style="font-size:5rem;margin-bottom:20px;">📚</div>
+  <h1 style="font-size:2rem;color:var(--color-primary);margin-bottom:12px;{% if request.locale.iso_code == 'ur' %}font-family:'Noto Nastaliq Urdu',serif;direction:rtl;line-height:2;{% endif %}">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ '404.title' | t | default: 'صفحہ نہیں ملا' }}
+    {%- else -%}
+      {{ '404.title' | t | default: 'Page Not Found' }}
+    {%- endif -%}
+  </h1>
+  <p style="color:var(--color-text-secondary);margin-bottom:32px;{% if request.locale.iso_code == 'ur' %}direction:rtl;{% endif %}">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ '404.subtext' | t | default: 'معذرت، آپ جو صفحہ تلاش کر رہے ہیں وہ دستیاب نہیں ہے۔' }}
+    {%- else -%}
+      {{ '404.subtext' | t | default: 'Sorry, the page you are looking for does not exist.' }}
+    {%- endif -%}
+  </p>
+  <a href="{{ routes.root_url }}" class="btn btn-orange btn-ripple">
+    {%- if request.locale.iso_code == 'ur' -%}
+      {{ '404.cta' | t | default: 'ہوم پر واپس جائیں' }}
+    {%- else -%}
+      {{ '404.cta' | t | default: 'Go Back Home' }}
+    {%- endif -%}
+  </a>
+</div>

@@ -1,0 +1,215 @@
+{% comment %}KITAB WALA - FOOTER (Strictly English & Clean Layout){% endcomment %}
+
+<footer class="site-footer" role="contentinfo" style="background: var(--color-dark-navy); color: rgba(255,255,255,0.8); padding: 40px 0 20px;">
+  <div class="footer-grid container" style="align-items: start;">
+    
+    <!-- Left Column: Branding, Tagline, Socials, Payment Icons -->
+    <div class="footer-brand-col" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left;">
+      <div class="footer-brand-logo" style="margin-bottom: 16px;">
+        <a href="{{ routes.root_url }}" style="display: block;">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 250 }}" alt="KitabWala" style="max-width: 130px; height: auto; display: block;">
+          {%- else -%}
+            <img src="{{ 'logo.png' | asset_url }}" alt="KitabWala" style="max-width: 130px; height: auto; display: block;">
+          {%- endif -%}
+        </a>
+      </div>
+      <p class="footer-tagline" style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 20px; font-family: inherit; text-align: left; max-width: 350px;">
+        {{ section.settings.tagline_en | default: 'Your Favorite Books, Delivered to Your Doorstep.' }}
+      </p>
+      
+      <!-- Social Buttons -->
+      <div class="footer-social" style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+        {%- assign fb_link = section.settings.social_facebook | default: 'https://www.facebook.com/share/1TppvP9cgY/?mibextid=wwXIfr' -%}
+        {%- if fb_link != blank -%}
+          <a href="{{ fb_link }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_instagram != blank -%}
+          <a href="{{ section.settings.social_instagram }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          </a>
+        {%- endif -%}
+        {%- assign tt_link = section.settings.social_tiktok | default: 'https://www.tiktok.com/@kitab.wala?_r=1&_t=ZN-98IfsMRmejW' -%}
+        {%- if tt_link != blank -%}
+          <a href="{{ tt_link }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.99-1.72-.08-.07-.17-.14-.24-.22v6.4c.05 4.79-3.9 8.65-8.68 8.56C4.85 22.92 1 18.91 1.05 14.13c.05-4.47 3.59-8.17 8.06-8.56.09-.01.18-.01.27-.02v4.13c-2.31.28-4.14 2.25-4.12 4.58.03 2.77 2.45 4.96 5.22 4.75 2.37-.18 4.19-2.22 4.13-4.6-.01-2.52-.01-5.04-.01-7.56.02-2.27.02-4.54.02-6.81l.9-.03z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_snapchat != blank -%}
+          <a href="{{ section.settings.social_snapchat }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="Snapchat">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2c-3.525 0-6.19 2.01-6.19 5.343 0 1.258.423 2.333 1.125 3.013.111.109.215.195.27.243.05.043.076.082.08.125-.015.158-.293.438-.59.738a5.21 5.21 0 0 0-.649.771c-.347.534-.143 1.128.452 1.344.208.077.447.115.71.115.132 0 .285-.01.458-.028.177-.019.349-.038.513-.053l.235-.019c.074.004.146.015.222.034.05.012.096.035.138.068.324.263.81.455 1.558.552.128.016.27.026.425.029.074.002.148.003.223.003s.149-.001.223-.003c.155-.003.297-.013.425-.029.748-.097 1.234-.289 1.558-.552.042-.033.088-.056.138-.068.076-.019.148-.03.222-.034l.235.019c.164.015.336.034.513.053.173.018.326.028.458.028.263 0 .502-.038.71-.115.595-.216.799-.81.452-1.344a5.21 5.21 0 0 0-.649-.771c-.297-.3-.575-.58-.59-.738.004-.043.03-.082.08-.125.055-.048.159-.134.27-.243.702-.68 1.125-1.755 1.125-3.013C18.19 4.01 15.525 2 12 2z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_youtube != blank -%}
+          <a href="{{ section.settings.social_youtube }}" class="footer-social-btn" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+
+    <!-- Right Column: Contact Information -->
+    <div class="footer-contact-col" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left;">
+      <h3 class="footer-col-title" style="font-size: 1rem; font-weight: 700; color: white; margin-bottom: 16px;">
+        {%- if request.locale.iso_code == 'ur' -%}رابطہ کریں{%- else -%}Contact Us{%- endif -%}
+      </h3>
+      
+      {%- assign phone = section.settings.contact_phone | default: '+92 322 9099909' -%}
+      {%- assign email = section.settings.contact_email | default: 'Kitabwalaofficialpk@gmail.com' -%}
+      {%- assign address = section.settings.contact_address | default: 'Kitab Wala, Ghazni Street Urdu Bazar, Lahore' -%}
+      {%- assign wa_num = section.settings.whatsapp_number | default: '923229099909' -%}
+      
+      {%- if address != blank -%}
+        <div class="footer-contact-item" style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.75); font-family: inherit;">
+          <span>📍</span>
+          <span>
+            {%- if request.locale.iso_code == 'ur' and address == 'Kitab Wala, Ghazni Street Urdu Bazar, Lahore' -%}
+              کتاب والا، غزنی سٹریٹ اردو بازار، لاہور
+            {%- else -%}
+              {{ address }}
+            {%- endif -%}
+          </span>
+        </div>
+      {%- endif -%}
+      {%- if phone != blank -%}
+        <div class="footer-contact-item" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.75);">
+          <span>📞</span>
+          <span>{{ phone }}</span>
+        </div>
+      {%- endif -%}
+      {%- if email != blank -%}
+        <div class="footer-contact-item" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.75);">
+          <span>✉️</span>
+          <a href="mailto:{{ email }}" style="color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s ease;">{{ email }}</a>
+        </div>
+      {%- endif -%}
+      {%- if wa_num != blank -%}
+        <div class="footer-contact-item" style="margin-top: 12px;">
+          <a href="https://wa.me/{{ wa_num }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white" width="14" height="14" style="display: inline-block; vertical-align: middle;">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.8 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.6-27.5-16.4-14.7-27.5-32.8-30.7-38.3-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.6 5.6-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.5 11.8 11.5 3.6 21.9 3.1 30.2 1.9 9.3-1.4 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+            {%- if request.locale.iso_code == 'ur' -%}
+              واٹس ایپ پر رابطہ کریں
+            {%- else -%}
+              {{ section.settings.whatsapp_btn_label_en | default: 'Chat on WhatsApp' }}
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.4); text-align: center; gap: 12px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}.</span>
+    <span>{{ section.settings.copyright_note_en | default: 'All Rights Reserved.' }}</span>
+    <span style="color: rgba(255,255,255,0.15)">|</span>
+    <a href="/pages/privacy-policy" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+      {%- if request.locale.iso_code == 'ur' -%}پرائیویسی پالیسی{%- else -%}Privacy Policy{%- endif -%}
+    </a>
+    <span style="color: rgba(255,255,255,0.15)">|</span>
+    <a href="/pages/return-policy" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+      {%- if request.locale.iso_code == 'ur' -%}واپسی کی پالیسی{%- else -%}Return & Refund Policy{%- endif -%}
+    </a>
+    <span style="color: rgba(255,255,255,0.15)">|</span>
+    <a href="/pages/terms-of-service" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+      {%- if request.locale.iso_code == 'ur' -%}شرائط و ضوابط{%- else -%}Terms of Service{%- endif -%}
+    </a>
+    <span style="color: rgba(255,255,255,0.15)">|</span>
+    <a href="/pages/shipping-policy" style="color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+      {%- if request.locale.iso_code == 'ur' -%}ترسیل کی پالیسی{%- else -%}Shipping Policy{%- endif -%}
+    </a>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "tagline_en",
+      "label": "Tagline (English)",
+      "default": "Your Favorite Books, Delivered to Your Doorstep."
+    },
+    {
+      "type": "text",
+      "id": "copyright_note_en",
+      "label": "Copyright Note (English)",
+      "default": "All Rights Reserved."
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone Number",
+      "default": "+92 322 9099909"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email Address",
+      "default": "Kitabwalaofficialpk@gmail.com"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_address",
+      "label": "Address",
+      "default": "Kitab Wala, Ghazni Street Urdu Bazar, Lahore"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp Number (without +)",
+      "default": "923229099909"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_btn_label_en",
+      "label": "WhatsApp Button Label (English)",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "social_snapchat",
+      "label": "Snapchat URL"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube URL"
+    }
+  ]
+}
+{% endschema %}

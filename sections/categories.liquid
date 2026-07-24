@@ -1,0 +1,187 @@
+{% comment %}KITAB WALA - CATEGORIES GRID{% endcomment %}
+
+<section class="categories-section section scroll-reveal" id="categories">
+  <div class="container">
+    {%- assign title_to_show = section.settings.title_en | default: 'Book Categories' -%}
+    {%- if request.locale.iso_code == 'ur' -%}
+      {%- if title_to_show == 'Book Categories' or title_to_show == 'Categories' -%}
+        {%- assign title_to_show = 'کتابوں کی اقسام' -%}
+      {%- endif -%}
+    {%- endif -%}
+    <div class="products-header">
+      <h2 class="products-title">
+        {{ title_to_show }}
+      </h2>
+    </div>
+  </div>
+
+  <div class="categories-grid">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- assign name_to_show = block.settings.name_en | default: 'Islamic' -%}
+        {%- if request.locale.iso_code == 'ur' -%}
+          {%- case name_to_show -%}
+            {%- when 'Holy Quran' -%}{%- assign name_to_show = 'قرآن مجید' -%}
+            {%- when 'Islamic' -%}{%- assign name_to_show = 'اسلامک کتب' -%}
+            {%- when 'History' -%}{%- assign name_to_show = 'تاریخی کتب' -%}
+            {%- when 'Partition' -%}{%- assign name_to_show = 'تحریکِ پاکستان' -%}
+            {%- when 'Philosophy' -%}{%- assign name_to_show = 'فلسفہ' -%}
+            {%- when 'Novels' -%}{%- assign name_to_show = 'ناولز' -%}
+            {%- when 'Poetry' -%}{%- assign name_to_show = 'شاعری' -%}
+            {%- when 'Travelogue' -%}{%- assign name_to_show = 'سفرنامے' -%}
+            {%- when 'Hadith' -%}{%- assign name_to_show = 'حدیث مبارکہ' -%}
+            {%- when 'Tafsir' -%}{%- assign name_to_show = 'تفسیر' -%}
+            {%- when 'Seerat un Nabi' -%}{%- assign name_to_show = 'سیرت النبی ﷺ' -%}
+            {%- when 'Tasawuf' -%}{%- assign name_to_show = 'تصوف' -%}
+            {%- when 'Urdu Literature' -%}{%- assign name_to_show = 'اردو ادب' -%}
+            {%- when 'Short Stories' -%}{%- assign name_to_show = 'افسانے' -%}
+            {%- when 'Biography' -%}{%- assign name_to_show = 'سوانح عمری' -%}
+            {%- when 'Translations' -%}{%- assign name_to_show = 'تراجم' -%}
+            {%- when 'Politics' -%}{%- assign name_to_show = 'سیاسیات' -%}
+            {%- when 'Self Help' -%}{%- assign name_to_show = 'خود سازی' -%}
+            {%- when 'Psychology' -%}{%- assign name_to_show = 'نفسیات' -%}
+            {%- when 'Humor' -%}{%- assign name_to_show = 'مزاح' -%}
+          {%- endcase -%}
+        {%- endif -%}
+        <a href="{{ block.settings.url | default: '#' }}" class="category-card {% if forloop.index > 8 %}category-card-hidden{% endif %} scroll-reveal animate-delay-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <span class="category-icon">{{ block.settings.emoji | default: '📚' }}</span>
+          <span class="category-name-en" style="font-size:0.92rem; font-weight:700; color:var(--color-text-primary);">{{ name_to_show }}</span>
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      <!-- Default fallbacks with Urdu translation support -->
+      {%- assign default_cats = "holy-quran:📗:Holy Quran,islam:🕌:Islamic,history:🏛️:History,pakistan:🇵🇰:Partition,philosophy:💭:Philosophy,novel:📚:Novels,poetry:✍️:Poetry,travelogue:🧳:Travelogue,hadith:📖:Hadith,tafsir:💚:Tafsir,seerat-un-nabi:🕋:Seerat un Nabi,tasawuf:☪️:Tasawuf,urdu-literature:📖:Urdu Literature,short-stories:📝:Short Stories,biography:⭐:Biography,translations:🌍:Translations,politics:🏛️:Politics,essays:📄:Essays,drama:🎭:Drama,science:🔬:Science,psychology:🧠:Psychology,education:🎓:Education,english-books:📈:English Books,general-knowledge:💡:General Knowledge,fiqh:☪️:Fiqh,pakistan:🇵🇰:Pakistan,cooking:🍳:Cooking" | split: "," -%}
+      {%- for cat_item in default_cats -%}
+        {%- assign cat_parts = cat_item | split: ":" -%}
+        {%- assign cat_handle = cat_parts[0] -%}
+        {%- assign cat_emoji = cat_parts[1] -%}
+        {%- assign cat_name = cat_parts[2] -%}
+        
+        {%- assign translated_name = cat_name -%}
+        {%- if request.locale.iso_code == 'ur' -%}
+          {%- case cat_name -%}
+            {%- when 'Holy Quran' -%}{%- assign translated_name = 'قرآن مجید' -%}
+            {%- when 'Islamic' -%}{%- assign translated_name = 'اسلامک کتب' -%}
+            {%- when 'History' -%}{%- assign translated_name = 'تاریخی کتب' -%}
+            {%- when 'Partition' -%}{%- assign translated_name = 'تحریکِ پاکستان' -%}
+            {%- when 'Philosophy' -%}{%- assign translated_name = 'فلسفہ' -%}
+            {%- when 'Novels' -%}{%- assign translated_name = 'ناولز' -%}
+            {%- when 'Poetry' -%}{%- assign translated_name = 'شاعری' -%}
+            {%- when 'Travelogue' -%}{%- assign translated_name = 'سفرنامے' -%}
+            {%- when 'Hadith' -%}{%- assign translated_name = 'حدیث مبارکہ' -%}
+            {%- when 'Tafsir' -%}{%- assign translated_name = 'تفسیر' -%}
+            {%- when 'Seerat un Nabi' -%}{%- assign translated_name = 'سیرت النبی ﷺ' -%}
+            {%- when 'Tasawuf' -%}{%- assign translated_name = 'تصوف' -%}
+            {%- when 'Urdu Literature' -%}{%- assign translated_name = 'اردو ادب' -%}
+            {%- when 'Short Stories' -%}{%- assign translated_name = 'افسانے' -%}
+            {%- when 'Biography' -%}{%- assign translated_name = 'سوانح عمری' -%}
+            {%- when 'Translations' -%}{%- assign translated_name = 'تراجم' -%}
+            {%- when 'Politics' -%}{%- assign translated_name = 'سیاسیات' -%}
+            {%- when 'Essays' -%}{%- assign translated_name = 'مضامین' -%}
+            {%- when 'Drama' -%}{%- assign translated_name = 'ڈرامہ' -%}
+            {%- when 'Science' -%}{%- assign translated_name = 'سائنس' -%}
+            {%- when 'Psychology' -%}{%- assign translated_name = 'نفسیات' -%}
+            {%- when 'Education' -%}{%- assign translated_name = 'تعلیم' -%}
+            {%- when 'English Books' -%}{%- assign translated_name = 'انگریزی کتب' -%}
+            {%- when 'General Knowledge' -%}{%- assign translated_name = 'جنرل نالج' -%}
+            {%- when 'Fiqh' -%}{%- assign translated_name = 'فقہ' -%}
+            {%- when 'Pakistan' -%}{%- assign translated_name = 'پاکستان' -%}
+            {%- when 'Cooking' -%}{%- assign translated_name = 'ککنگ' -%}
+          {%- endcase -%}
+        {%- endif -%}
+        
+        <a href="/collections/{{ cat_handle }}" class="category-card {% if forloop.index > 8 %}category-card-hidden{% endif %}">
+          <span class="category-icon">{{ cat_emoji }}</span>
+          <span class="category-name-en" style="font-size:0.92rem; font-weight:700; color:var(--color-text-primary);">{{ translated_name }}</span>
+        </a>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_view_all -%}
+    <div class="categories-show-more" style="margin-top:20px; text-align:center;">
+      <button id="show-more-categories-btn" class="btn-show-more" data-url="{{ section.settings.show_more_url | default: routes.collections_url }}" style="background:var(--color-primary); color:white; border:none; padding:10px 24px; border-radius:50px; cursor:pointer; font-size:0.9rem; transition:all 0.3s ease;">
+        {%- if request.locale.iso_code == 'ur' -%}
+          مزید اقسام دیکھیں
+        {%- else -%}
+          {{ section.settings.show_more_label_en | default: 'View More Categories' }}
+        {%- endif -%}
+        <span>↓</span>
+      </button>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Categories",
+  "tag": "section",
+  "class": "section-categories",
+  "max_blocks": 60,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Section Title (English)",
+      "default": "Book Categories"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "show_more_url",
+      "label": "View All URL"
+    },
+    {
+      "type": "text",
+      "id": "show_more_label_en",
+      "label": "View All Button Label (English)",
+      "default": "View More Categories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji / Icon",
+          "default": "📚"
+        },
+        {
+          "type": "text",
+          "id": "name_en",
+          "label": "Name (English)",
+          "default": "Islamic"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Collection URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories Grid",
+      "blocks": [
+        {"type": "category", "settings": {"emoji": "📗", "name_en": "Holy Quran", "url": "/collections/holy-quran"}},
+        {"type": "category", "settings": {"emoji": "🕌", "name_en": "Islamic", "url": "/collections/islam"}},
+        {"type": "category", "settings": {"emoji": "🏛️", "name_en": "History", "url": "/collections/history"}},
+        {"type": "category", "settings": {"emoji": "🇵🇰", "name_en": "Partition", "url": "/collections/pakistan"}},
+        {"type": "category", "settings": {"emoji": "💭", "name_en": "Philosophy", "url": "/collections/philosophy"}},
+        {"type": "category", "settings": {"emoji": "📚", "name_en": "Novels", "url": "/collections/novel"}},
+        {"type": "category", "settings": {"emoji": "✍️", "name_en": "Poetry", "url": "/collections/poetry"}},
+        {"type": "category", "settings": {"emoji": "🧳", "name_en": "Travelogue", "url": "/collections/travelogue"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

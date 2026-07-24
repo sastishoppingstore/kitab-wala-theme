@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "show_announcement": true,
+          "announcement_text": "Pakistan bhar mein Rs. 3,000 se zyada order par free delivery"
+        }
+      },
+      "hero-banner": {
+        "type": "hero-banner",
+        "settings": {
+          "default_image": "shopify://shop_images/Gemini_Generated_Image_1tlb631tlb631tlb.png",
+          "badge_text": "Har Kitab Mein Har Kitab Mein",
+          "heading": "Kitab Wala",
+          "heading_gold": "",
+          "subheading": "",
+          "cta_1_label": "Abhi Khareedein",
+          "cta_1_url": "",
+          "cta_2_label": "Categories Dekhein",
+          "cta_2_url": "",
+          "discount_text": "40%"
+        }
+      },
+      "quick-actions": {
+        "type": "quick-actions",
+        "settings": {}
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "title_ur": "نئی کتابیں",
+          "collection": "",
+          "collection_url": "",
+          "view_all_label": "سب دیکھیں",
+          "products_limit": 8,
+          "show_view_all_btn": true
+        }
+      },
+      "best-selling": {
+        "type": "best-selling",
+        "settings": {
+          "title_ur": "زیادہ فروخت ہونے والی کتابیں",
+          "collection": "",
+          "collection_url": "",
+          "view_all_label": "سب دیکھیں",
+          "products_limit": 8,
+          "show_view_all_btn": true
+        }
+      },
+      "categories": {
+        "type": "categories",
+        "settings": {
+          "title_ur": "کتابوں کی اقسام",
+          "show_view_all": true,
+          "show_more_url": "",
+          "show_more_label": "مزید اقسام دیکھیں"
+        }
+      },
+      "discount-banner": {
+        "type": "discount-banner",
+        "settings": {
+          "discount_tag": "UPTO 50% DISCOUNT",
+          "title_ur": "خاص چھوٹ",
+          "subtitle": "Limited Time Offer — On Selected Books",
+          "cta_label_ur": "شاپنگ شروع کریں",
+          "cta_url": "",
+          "bg_color": ""
+        }
+      },
+      "discounted-products": {
+        "type": "discounted-products",
+        "settings": {
+          "title_ur": "رعایتی قیمت والی کتابیں",
+          "collection": "",
+          "collection_url": "",
+          "view_all_label": "سب دیکھیں",
+          "products_limit": 8,
+          "show_view_all_btn": true
+        }
+      },
+      "how-to-pay": {
+        "type": "how-to-pay",
+        "settings": {
+          "title_ur": "ادائیگی کے طریقے"
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "title_ur": "آخری اپڈیٹس حاصل کریں",
+          "subtitle_en": "Get Latest Updates — New Books, Discounts & More",
+          "email_placeholder": "آپ کی ای میل درج کریں",
+          "btn_label_ur": "رجسٹر کریں",
+          "privacy_note": "ہم آپ کی ای میل کسی کے ساتھ شیئر نہیں کریں گے"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline_ur": "ہزاروں اسلامی و اردو کتابیں آپ کی دہلیز پر",
+          "copyright_note": "جملہ حقوق محفوظ ہیں",
+          "contact_phone": "",
+          "contact_email": "",
+          "contact_address": "",
+          "whatsapp_number": "",
+          "social_facebook": "",
+          "social_instagram": "",
+          "social_whatsapp": "",
+          "social_youtube": "",
+          "footer_quick_links": "",
+          "footer_customer_service": ""
+        }
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": {
+    "Default": {}
+  }
+}

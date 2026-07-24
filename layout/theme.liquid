@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary | default: '#1a3a52' }}">
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64 }}">
+  {%- endif -%}
+
+  {%- unless settings.type_header_font.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{%- endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{%- endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{%- endunless -%}
+  </title>
+
+  {{ content_for_header }}
+
+  {%- liquid
+    assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+    assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+  -%}
+
+  <style>
+    :root {
+      --color-primary: {{ settings.color_primary | default: '#1a3a52' }};
+      --color-dark-navy: {{ settings.color_dark_navy | default: '#0f2438' }};
+      --color-orange: {{ settings.color_accent | default: '#ff9500' }};
+      --color-orange-hover: {{ settings.color_accent_hover | default: '#c9864a' }};
+      --color-gold: {{ settings.color_gold | default: '#d4a574' }};
+      --color-text-primary: {{ settings.color_text | default: '#1a3a52' }};
+      --color-text-secondary: {{ settings.color_text_secondary | default: '#666666' }};
+    }
+  </style>
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ 'animations.css' | asset_url | stylesheet_tag }}
+  {{ 'responsive.css' | asset_url | stylesheet_tag }}
+
+  {%- if settings.custom_css != blank -%}
+    <style>{{ settings.custom_css }}</style>
+  {%- endif -%}
+
+  {%- if settings.google_analytics_id != blank -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.google_analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ settings.google_analytics_id }}');
+    </script>
+  {%- endif -%}
+</head>
+
+<body class="has-mobile-nav template-{{ template.name }}">
+
+  {%- section 'header' -%}
+
+  <div id="search-modal" class="search-modal">
+    <div class="search-modal-inner">
+      <form class="search-modal-form" action="{{ routes.search_url }}" method="get" role="search">
+        <input
+          id="search-modal-input"
+          class="search-modal-input"
+          type="search"
+          name="q"
+          placeholder="{% if request.locale.iso_code == 'ur' %}کتاب، مصنف یا موضوع تلاش کریں...{% else %}Search books...{% endif %}"
+          autocomplete="off"
+          autofocus
+        >
+        <input type="hidden" name="type" value="product">
+        <button type="submit" class="search-modal-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+      <div class="search-suggestions">
+        <span>{% if request.locale.iso_code == 'ur' %}مشہور:{% else %}Popular:{% endif %}</span>
+        <span class="search-suggestion-tag">{% if request.locale.iso_code == 'ur' %}قرآن{% else %}Quran{% endif %}</span>
+        <span class="search-suggestion-tag">{% if request.locale.iso_code == 'ur' %}حدیث{% else %}Hadith{% endif %}</span>
+        <span class="search-suggestion-tag">{% if request.locale.iso_code == 'ur' %}فقہ{% else %}Fiqh{% endif %}</span>
+        <span class="search-suggestion-tag">{% if request.locale.iso_code == 'ur' %}بچوں کی کتب{% else %}Children Books{% endif %}</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%- section 'footer' -%}
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="{{ routes.root_url }}" class="mobile-bottom-nav-item {% if template.name == 'index' %}active{% endif %}" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span class="mobile-bottom-nav-label">{% if request.locale.iso_code == 'ur' %}ہوم{% else %}Home{% endif %}</span>
+    </a>
+    <button class="mobile-bottom-nav-item" data-open-search aria-label="Search">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="mobile-bottom-nav-label">{% if request.locale.iso_code == 'ur' %}تلاش{% else %}Search{% endif %}</span>
+    </button>
+    <a href="{{ routes.collections_url }}" class="mobile-bottom-nav-item {% if template.name == 'collection' or template.name == 'list-collections' %}active{% endif %}" aria-label="Categories">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="mobile-bottom-nav-label">{% if request.locale.iso_code == 'ur' %}اقسام{% else %}Categories{% endif %}</span>
+    </a>
+    <a href="/collections/islam" class="mobile-bottom-nav-item {% if request.path contains 'islam' %}active{% endif %}" aria-label="Islamic Books">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      <span class="mobile-bottom-nav-label">{% if request.locale.iso_code == 'ur' %}اسلامی کتب{% else %}Islamic Books{% endif %}</span>
+    </a>
+    <a href="{{ routes.account_url }}" class="mobile-bottom-nav-item {% if template.name == 'customers/account' %}active{% endif %}" aria-label="Account">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="mobile-bottom-nav-label">{% if request.locale.iso_code == 'ur' %}اکاؤنٹ{% else %}Account{% endif %}</span>
+    </a>
+  </nav>
+
+  <script src="{{ '3d-product.js' | asset_url }}&v=1.0.5" defer></script>
+
+  {%- if settings.custom_js != blank -%}
+    <script>{{ settings.custom_js }}</script>
+  {%- endif -%}
+</body>
+</html>

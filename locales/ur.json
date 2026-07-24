@@ -1,0 +1,140 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "language": {
+      "urdu": "اردو",
+      "english": "انگریزی",
+      "punjabi": "پنجابی"
+    },
+    "search": {
+      "search": "تلاش",
+      "placeholder": "کتاب، مصنف یا موضوع تلاش کریں...",
+      "no_results": "کوئی نتیجہ نہیں ملا"
+    },
+    "nav": {
+      "menu": "مینو",
+      "close": "بند کریں",
+      "home": "ہوم",
+      "categories": "اقسام",
+      "discount": "ڈسکاؤنٹ",
+      "new_arrivals": "نئے آمد",
+      "upcoming": "آنے والی کتابیں",
+      "request_book": "کتاب مانگیں",
+      "catalogue": "کیٹالاگ",
+      "how_to_pay": "ادائیگی کا طریقہ",
+      "contact": "رابطہ کریں",
+      "about": "ہمارے بارے میں",
+      "sidebar": "سائیڈ مینو",
+      "mobile_bottom": "موبائل نیویگیشن",
+      "main": "مرکزی نیویگیشن",
+      "select_language": "زبان منتخب کریں",
+      "favorites": "پسندیدہ"
+    },
+    "pagination": {
+      "previous": "پچھلا",
+      "next": "اگلا"
+    },
+    "back": "واپس",
+    "meta": {
+      "tags": "ٹیگ: {{ tags }}",
+      "page": "صفحہ {{ page }}"
+    },
+    "password_page": {
+      "coming_soon": "جلد آ رہا ہے"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "کارٹ میں شامل",
+      "order_now": "آرڈر دیں",
+      "more_info": "مزید معلومات",
+      "sold_out": "اسٹاک ختم",
+      "author": "مصنف",
+      "edition": "ایڈیشن",
+      "publisher": "ناشر",
+      "type": "نوع",
+      "vendor": "برانڈ",
+      "reviews": "قارئین کی رائے",
+      "add_to_wishlist": "پسندیدہ میں شامل"
+    },
+    "reviews": {
+      "sample_review_1": "بہت عمدہ کتاب ہے، پڑھ کر دل خوش ہو گیا۔ تیز ترسیل اور اصل کتاب ملی۔",
+      "sample_review_2": "کتاب اچھی ہے، پیکنگ بھی عمدہ تھی۔"
+    },
+    "faq": {
+      "title": "عام سوالات",
+      "q1": "ترسیل میں کتنا وقت لگتا ہے؟",
+      "a1": "عام طور پر 3-5 کاروباری دنوں میں ترسیل ہوتی ہے۔ لاہور، کراچی، اسلام آباد میں 1-2 دن۔",
+      "q2": "واپسی کی پالیسی کیا ہے؟",
+      "a2": "اگر کتاب خراب یا غلط آئے تو 7 دنوں میں واپس کریں، مکمل رقم واپس ملے گی۔",
+      "q3": "کیا COD (کیش آن ڈلیوری) دستیاب ہے؟",
+      "a3": "جی ہاں، پاکستان بھر میں کیش آن ڈلیوری دستیاب ہے۔"
+    }
+  },
+  "collections": {
+    "general": {
+      "product_count": "کتابیں",
+      "no_products": "اس وقت کوئی کتاب دستیاب نہیں"
+    },
+    "filters": {
+      "title": "فلٹر",
+      "clear_all": "صاف کریں",
+      "price": "قیمت (Rs)",
+      "rating": "درجہ بندی",
+      "availability": "دستیابی",
+      "in_stock": "اسٹاک میں",
+      "out_of_stock": "اسٹاک ختم"
+    },
+    "sorting": {
+      "featured": "فیچرڈ",
+      "az": "A–Z",
+      "price_asc": "قیمت: کم سے زیادہ",
+      "price_desc": "قیمت: زیادہ سے کم",
+      "newest": "نئی آمد",
+      "best_selling": "بیسٹ سیلنگ"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "کارٹ"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "اکاؤنٹ"
+    }
+  },
+  "search": {
+    "popular": {
+      "title": "مشہور:",
+      "quran": "قرآن",
+      "hadith": "حدیث",
+      "fiqh": "فقہ",
+      "children": "بچوں کی کتابیں"
+    }
+  },
+  "footer": {
+    "quick_links": "فوری لنکس",
+    "customer_service": "کسٹمر سروس",
+    "contact_us": "رابطہ کریں",
+    "shipping_info": "ترسیل کی معلومات",
+    "return_policy": "واپسی پالیسی",
+    "faq": "عام سوالات",
+    "privacy": "رازداری",
+    "terms": "شرائط",
+    "whatsapp_contact": "WhatsApp پر رابطہ"
+  },
+  "404": {
+    "title": "صفحہ نہیں ملا",
+    "subtext": "معذرت، آپ جو صفحہ تلاش کر رہے ہیں وہ دستیاب نہیں ہے۔",
+    "cta": "ہوم پر واپس جائیں"
+  }
+}

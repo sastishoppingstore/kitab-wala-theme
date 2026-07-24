@@ -1,0 +1,511 @@
+{% comment %}
+  KITAB WALA - HERO BANNER & UNDER-HERO QUICK LINKS
+{% endcomment %}
+
+<div class="hero-section-wrapper container scroll-reveal">
+  <style>
+    /* Styling overrides for new Hero Section layout */
+    .hero-banner-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .hero-card-content {
+      position: relative;
+      z-index: 3;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #FFFFFF;
+      padding: 60px 40px;
+    }
+    .hero-content-badge {
+      position: absolute !important;
+      top: 24px !important;
+      left: 24px !important;
+      z-index: 5 !important;
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      border-radius: 50px !important;
+      padding: 8px 16px !important;
+      font-size: 0.92rem !important;
+      font-weight: 600 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      margin-bottom: 0 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      color: #ffffff !important;
+    }
+    .hero-content-actions {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+      margin-bottom: 0 !important;
+      margin-top: 10px !important;
+    }
+    .hero-content-actions a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 210px !important;
+      height: 48px !important;
+      border-radius: 24px !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      font-size: 0.95rem !important;
+      transition: all 0.3s ease !important;
+      box-sizing: border-box !important;
+    }
+    .hero-btn-gold {
+      background-color: #e29b43 !important;
+      color: #0E3A2F !important;
+      border: none !important;
+      box-shadow: 0 4px 12px rgba(226, 155, 67, 0.3) !important;
+    }
+    .hero-btn-gold:hover {
+      background-color: #f3ad56 !important;
+      transform: translateY(-2px) !important;
+    }
+    .hero-btn-outline {
+      border: 2px solid rgba(255, 255, 255, 0.35) !important;
+      color: #FFFFFF !important;
+      background-color: rgba(255, 255, 255, 0.06) !important;
+    }
+    .hero-btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      border-color: #FFFFFF !important;
+      transform: translateY(-2px) !important;
+    }
+    .hero-discount-sticker {
+      position: absolute !important;
+      top: 40px !important;
+      right: 40px !important;
+      z-index: 4 !important;
+      width: 120px !important;
+      height: 120px !important;
+      background-color: #D84C2A !important;
+      color: #FFFFFF !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transform: rotate(12deg) !important;
+      border: 2px dashed rgba(255, 255, 255, 0.6) !important;
+      outline: 5px solid #D84C2A !important;
+      box-shadow: 0 8px 20px rgba(216, 76, 42, 0.35) !important;
+    }
+    .sticker-inner {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      line-height: 1.2 !important;
+    }
+    .sticker-small {
+      font-size: 0.65rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px !important;
+    }
+    .sticker-big {
+      font-size: 1.6rem !important;
+      font-weight: 900 !important;
+      margin: 2px 0 !important;
+    }
+    .hero-rating-badge {
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      z-index: 5 !important;
+      background: rgba(14, 58, 47, 0.65) !important;
+      backdrop-filter: blur(8px) !important;
+      padding: 10px 24px !important;
+      border-radius: 0 20px 0 0 !important;
+      color: #FFFFFF !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+      pointer-events: none !important;
+    }
+
+    /* Mobile view scaling rules */
+    @media screen and (max-width: 768px) {
+      .hero-card-content {
+        padding: 30px 16px !important;
+      }
+      .hero-content-badge {
+        position: absolute !important;
+        top: 12px !important;
+        left: 12px !important;
+        font-size: 0.68rem !important;
+        padding: 5px 10px !important;
+        margin-bottom: 0 !important;
+        line-height: 1.3 !important;
+        white-space: nowrap !important;
+      }
+      .hero-content-actions {
+        gap: 10px !important;
+        margin-top: 5px !important;
+      }
+      .hero-content-actions a {
+        width: 110px !important; /* Super small buttons as requested! */
+        height: 34px !important;
+        font-size: 0.72rem !important;
+        border-radius: 17px !important;
+      }
+      .hero-discount-sticker {
+        width: 80px !important;
+        height: 80px !important;
+        top: 15px !important;
+        right: 15px !important;
+        outline: 3px solid #D84C2A !important;
+      }
+      .sticker-small {
+        font-size: 0.5rem !important;
+      }
+      .sticker-big {
+        font-size: 1.1rem !important;
+      }
+      .hero-rating-badge {
+        bottom: 0 !important;
+        left: 0 !important;
+        padding: 8px 16px !important;
+        font-size: 0.68rem !important;
+        border-radius: 0 12px 0 0 !important;
+      }
+    }
+  </style>
+
+  <!-- Slides Container -->
+  {%- assign slides = section.blocks | where: 'type', 'slide' -%}
+  {%- if slides.size > 0 -%}
+    {%- for block in slides -%}
+      <div class="hero-banner-card {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+        <!-- Background Image or Gradient -->
+        {%- if block.settings.image != blank -%}
+          <img class="hero-bg-img" src="{{ block.settings.image | image_url: width: 1200 }}" alt="Hero Background" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+        {%- else -%}
+          <div class="hero-bg-img hero-gradient-fallback"></div>
+        {%- endif -%}
+        
+        <div class="hero-card-overlay"></div>
+        
+        <!-- Badge -->
+        <div class="hero-content-badge">
+          <span class="badge-icon">✨</span>
+          <span class="badge-label">
+            {%- if request.locale.iso_code == 'ur' -%}
+              آپ کی پسندیدہ کتب، اب آپ کی دہلیز پر۔
+            {%- else -%}
+              Your Favorite Books, Delivered to Your Doorstep.
+            {%- endif -%}
+          </span>
+        </div>
+        
+        <div class="hero-card-content">
+
+          <!-- Stacked Buttons -->
+          <div class="hero-content-actions">
+            {%- if request.locale.iso_code == 'ur' -%}
+              <a href="{{ block.settings.cta_1_url | default: '/' }}" class="hero-btn-gold">ابھی خریدیں</a>
+              <a href="{{ block.settings.cta_2_url | default: '#categories' }}" class="hero-btn-outline">کیٹیگریز</a>
+            {%- else -%}
+              <a href="{{ block.settings.cta_1_url | default: '/' }}" class="hero-btn-gold">Shop Now</a>
+              <a href="{{ block.settings.cta_2_url | default: '#categories' }}" class="hero-btn-outline">Categories</a>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- Bottom Left Happy Customers Badge -->
+        <div class="hero-rating-badge">
+          <span>★</span>
+          <span>
+            {%- if request.locale.iso_code == 'ur' -%}
+              10,000+ مطمئن گاہک
+            {%- else -%}
+              10,000 Happy Customers
+            {%- endif -%}
+          </span>
+        </div>
+
+        <!-- Discount Badge Sticker -->
+        <div class="hero-discount-sticker">
+          <div class="sticker-inner">
+            <span class="sticker-small">UP TO</span>
+            <span class="sticker-big">{{ block.settings.discount_text | default: '40%' }}</span>
+            <span class="sticker-small">DISCOUNT</span>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  {%- else -%}
+    <!-- Render using Section Settings (Direct Upload Fallback) -->
+    <div class="hero-banner-card active">
+      {%- if section.settings.default_image != blank -%}
+        <img class="hero-bg-img" src="{{ section.settings.default_image | image_url: width: 1200 }}" alt="Hero Background" loading="eager">
+      {%- else -%}
+        <div class="hero-bg-img hero-gradient-fallback"></div>
+      {%- endif -%}
+      
+      <div class="hero-card-overlay"></div>
+      
+      <!-- Badge -->
+      <div class="hero-content-badge">
+        <span class="badge-icon">✨</span>
+        <span class="badge-label">
+          {%- if request.locale.iso_code == 'ur' -%}
+            آپ کی پسندیدہ کتب، اب آپ کی دہلیز پر۔
+          {%- else -%}
+            Your Favorite Books, Delivered to Your Doorstep.
+          {%- endif -%}
+        </span>
+      </div>
+      
+      <div class="hero-card-content">
+
+        <!-- Stacked Buttons -->
+        <div class="hero-content-actions">
+          {%- if request.locale.iso_code == 'ur' -%}
+            <a href="{{ section.settings.cta_1_url | default: '/' }}" class="hero-btn-gold">ابھی خریدیں</a>
+            <a href="{{ section.settings.cta_2_url | default: '#categories' }}" class="hero-btn-outline">کیٹیگریز</a>
+          {%- else -%}
+            <a href="{{ section.settings.cta_1_url | default: '/' }}" class="hero-btn-gold">Shop Now</a>
+            <a href="{{ section.settings.cta_2_url | default: '#categories' }}" class="hero-btn-outline">Categories</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Bottom Left Happy Customers Badge -->
+      <div class="hero-rating-badge">
+        <span>★</span>
+        <span>
+          {%- if request.locale.iso_code == 'ur' -%}
+            10,000+ مطمئن گاہک
+          {%- else -%}
+            10,000 Happy Customers
+          {%- endif -%}
+        </span>
+      </div>
+
+      <!-- Discount Badge Sticker -->
+      <div class="hero-discount-sticker">
+        <div class="sticker-inner">
+          <span class="sticker-small">UP TO</span>
+          <span class="sticker-big">{{ section.settings.discount_text | default: '40%' }}</span>
+          <span class="sticker-small">DISCOUNT</span>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- Under-Hero Quick Links -->
+  <div class="under-hero-links-grid">
+    {%- assign quick_links = section.blocks | where: 'type', 'quick_link' -%}
+    {%- if quick_links.size > 0 -%}
+      {%- for block in quick_links -%}
+        <a href="{{ block.settings.url | default: '#' }}" class="under-hero-card" {{ block.shopify_attributes }}>
+          <span class="under-hero-card-label">
+            {%- if request.locale.iso_code == 'ur' -%}
+              {%- if block.settings.label == 'Islamic' -%}اسلامک
+              {%- elsif block.settings.label == 'History' -%}تاریخی
+              {%- elsif block.settings.label == 'Novels' -%}ناولز
+              {%- elsif block.settings.label == 'Kids' -%}بچوں کی
+              {%- else -%}{{ block.settings.label }}
+              {%- endif -%}
+            {%- else -%}
+              {{ block.settings.label }}
+            {%- endif -%}
+          </span>
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      <!-- Default Quick Links mapped to correct collection URLs with translations -->
+      <a href="/collections/islam" class="under-hero-card">
+        <span class="under-hero-card-label">
+          {%- if request.locale.iso_code == 'ur' -%}اسلامک{%- else -%}Islamic{%- endif -%}
+        </span>
+      </a>
+      <a href="/collections/history" class="under-hero-card">
+        <span class="under-hero-card-label">
+          {%- if request.locale.iso_code == 'ur' -%}تاریخی{%- else -%}History{%- endif -%}
+        </span>
+      </a>
+      <a href="/collections/novel" class="under-hero-card">
+        <span class="under-hero-card-label">
+          {%- if request.locale.iso_code == 'ur' -%}ناولز{%- else -%}Novels{%- endif -%}
+        </span>
+      </a>
+      <a href="/collections/children" class="under-hero-card">
+        <span class="under-hero-card-label">
+          {%- if request.locale.iso_code == 'ur' -%}بچوں کی{%- else -%}Kids{%- endif -%}
+        </span>
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner & Links",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section-level Banner (No Blocks required)"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Banner Background Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "HAR QARI KE LIYE KUCH KHAAS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Part 1",
+      "default": "In Every Book"
+    },
+    {
+      "type": "text",
+      "id": "heading_gold",
+      "label": "Heading Part 2 (Gold)",
+      "default": "A New World"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "From bestsellers to Urdu literature, children's stories to self-growth — find your next favorite book today."
+    },
+    {
+      "type": "text",
+      "id": "cta_1_label",
+      "label": "Button 1 Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_1_url",
+      "label": "Button 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_label",
+      "label": "Button 2 Label",
+      "default": "View Categories"
+    },
+    {
+      "type": "url",
+      "id": "cta_2_url",
+      "label": "Button 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount Sticker Percentage",
+      "default": "40%"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "HAR QARI KE LIYE KUCH KHAAS"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Part 1",
+          "default": "In Every Book"
+        },
+        {
+          "type": "text",
+          "id": "heading_gold",
+          "label": "Heading Part 2 (Gold)",
+          "default": "A New World"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "From bestsellers to Urdu literature, children's stories to self-growth — find your next favorite book today."
+        },
+        {
+          "type": "text",
+          "id": "cta_1_label",
+          "label": "Button 1 Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "cta_1_url",
+          "label": "Button 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "cta_2_label",
+          "label": "Button 2 Label",
+          "default": "View Categories"
+        },
+        {
+          "type": "url",
+          "id": "cta_2_url",
+          "label": "Button 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "discount_text",
+          "label": "Discount Sticker Percentage",
+          "default": "40%"
+        }
+      ]
+    },
+    {
+      "type": "quick_link",
+      "name": "Under-Hero Quick Link",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label",
+          "default": "Fiction"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner & Links"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,64 @@
+{% comment %}
+  KITAB WALA - PRODUCT CARD (App-style)
+  3D podium image, dual buttons, Urdu/English title
+{% endcomment %}
+
+{%- assign product_url = product.url | within: collection -%}
+{%- assign first_image = product.featured_image -%}
+{%- assign product_author = product.vendor | default: product.metafields.custom.author_urdu -%}
+{%- assign current_price = product.price | money_without_trailing_zeros -%}
+{%- assign compare_price = product.compare_at_price | money_without_trailing_zeros -%}
+{%- assign on_sale = false -%}
+{%- if product.compare_at_price > product.price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+{%- assign rating = product.metafields.reviews.rating.value | default: '4.5' -%}
+{%- assign review_count = product.metafields.reviews.rating_count | default: '1.2k' -%}
+
+<article class="app-card" data-product-id="{{ product.id }}">
+  <div class="app-card-image">
+    <div class="app-card-podium"></div>
+    <a href="{{ product_url }}">
+      {%- if first_image -%}
+        <img src="{{ first_image | image_url: width: 300 }}" alt="{{ product.title }}" loading="lazy">
+      {%- else -%}
+        <span style="font-size:3rem;">📚</span>
+      {%- endif -%}
+    </a>
+  </div>
+  <div class="app-card-body">
+    <a href="{{ product_url }}" class="app-card-title">
+      {%- if product.metafields.custom.title_urdu != blank -%}
+        {{ product.title }} - {{ product.metafields.custom.title_urdu }}
+      {%- else -%}
+        {{ product.title }}
+      {%- endif -%}
+    </a>
+
+    <div class="app-card-rating">
+      {%- assign r = rating | times: 1.0 -%}
+      {%- for i in (1..5) -%}
+        <span class="app-star" style="color:{% if i <= r %}#f5a623{% else %}#ddd{% endif %};">★</span>
+      {%- endfor -%}
+      <span class="app-rating-count">({{ review_count }})</span>
+    </div>
+    <div class="app-card-price">
+      <span class="app-price-current">{{ current_price }}</span>
+      {%- if on_sale -%}<span class="app-price-old">{{ compare_price }}</span>{%- endif -%}
+    </div>
+    <div class="app-card-actions">
+      {%- if product.available -%}
+        <button class="app-btn-cart" data-add-to-cart data-variant-id="{{ product.first_available_variant.id }}" data-product-id="{{ product.id }}">
+          {{ 'products.product.add_to_cart' | t | default: 'Add to Cart' }}
+        </button>
+        <a href="{{ product_url }}" class="app-btn-order">
+          {{ 'products.product.order_now' | t | default: 'Order Now' }}
+        </a>
+      {%- else -%}
+        <button class="app-btn-cart" disabled style="opacity:.5; grid-column: 1 / -1; width: 100%;">
+          {{ 'products.product.sold_out' | t | default: 'Sold Out' }}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+</article>

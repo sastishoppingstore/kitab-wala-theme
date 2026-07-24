@@ -1,0 +1,122 @@
+{% comment %}
+  KITAB WALA - TRUST BADGES / FEATURES
+{% endcomment %}
+
+<section class="app-trust scroll-reveal">
+  <div class="app-trust-row">
+    {%- for block in section.blocks -%}
+      {%- assign trust_label = block.settings.label_en | default: 'Service' -%}
+      {%- if request.locale.iso_code == 'ur' -%}
+        {%- case trust_label -%}
+          {%- when 'Fast Delivery' -%}{%- assign trust_label = 'تیز ترین ڈلیوری' -%}
+          {%- when 'Secure Payment' -%}{%- assign trust_label = 'محفوظ ادائیگی' -%}
+          {%- when 'Easy Returns' -%}{%- assign trust_label = 'آسان واپسی' -%}
+          {%- when 'Authentic Titles' -%}{%- assign trust_label = 'اصل کتابیں' -%}
+        {%- endcase -%}
+      {%- endif -%}
+      <a href="{{ block.settings.url | default: '#' }}" class="app-trust-item" {{ block.shopify_attributes }}>
+        <div class="app-trust-icon">
+          {%- if block.settings.icon == 'delivery' -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><path d="M1 3h15v13H1zM16 8h4l3 4v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+          {%- elsif block.settings.icon == 'payment' -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10" stroke="white" stroke-width="2"/></svg>
+          {%- elsif block.settings.icon == 'return' -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#19335A" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          {%- elsif block.settings.icon == 'books' -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          {%- else -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          {%- endif -%}
+        </div>
+        <span class="app-trust-label">
+          {{ trust_label }}
+        </span>
+      </a>
+    {%- else -%}
+      <span class="app-trust-item">
+        <div class="app-trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><path d="M1 3h15v13H1zM16 8h4l3 4v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+        </div>
+        <span class="app-trust-label">
+          {%- if request.locale.iso_code == 'ur' -%}تیز ترین ڈلیوری{%- else -%}Fast Delivery{%- endif -%}
+        </span>
+      </span>
+      <span class="app-trust-item">
+        <div class="app-trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <span class="app-trust-label">
+          {%- if request.locale.iso_code == 'ur' -%}محفوظ ادائیگی{%- else -%}Secure Payment{%- endif -%}
+        </span>
+      </span>
+      <span class="app-trust-item">
+        <div class="app-trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#19335A" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <span class="app-trust-label">
+          {%- if request.locale.iso_code == 'ur' -%}آسان واپسی{%- else -%}Easy Returns{%- endif -%}
+        </span>
+      </span>
+      <span class="app-trust-item">
+        <div class="app-trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#19335A"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <span class="app-trust-label">
+          {%- if request.locale.iso_code == 'ur' -%}اصل کتابیں{%- else -%}Authentic Titles{%- endif -%}
+        </span>
+      </span>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Quick Actions",
+  "tag": "section",
+  "class": "section-quick-actions",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "action",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {"value": "delivery", "label": "Delivery Truck"},
+            {"value": "payment", "label": "Payment Card"},
+            {"value": "return", "label": "Return Arrow"},
+            {"value": "books", "label": "Books"}
+          ],
+          "default": "delivery"
+        },
+        {
+          "type": "text",
+          "id": "label_en",
+          "label": "Label (English)",
+          "default": "Fast Delivery"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quick Actions",
+      "blocks": [
+        {"type": "action", "settings": {"icon": "delivery", "label_en": "Fast Delivery"}},
+        {"type": "action", "settings": {"icon": "payment", "label_en": "Secure Payment"}},
+        {"type": "action", "settings": {"icon": "return", "label_en": "Easy Returns"}},
+        {"type": "action", "settings": {"icon": "books", "label_en": "Authentic Titles"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

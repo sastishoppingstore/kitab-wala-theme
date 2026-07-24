@@ -1,0 +1,23 @@
+{% comment %}
+  KITAB WALA - PRICE SNIPPET
+  Usage: {% render 'price', product: product %}
+{% endcomment %}
+
+{%- if product.compare_at_price > product.price -%}
+  {%- assign savings_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+  <div class="product-card-price">
+    <span class="price-current">{{ product.price | money_without_trailing_zeros }}</span>
+    <span class="price-original">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+    <span class="price-discount">
+      {%- if request.locale.iso_code == 'ur' -%}
+        {{ savings_pct }}% بچت
+      {%- else -%}
+        Save {{ savings_pct }}%
+      {%- endif -%}
+    </span>
+  </div>
+{%- else -%}
+  <div class="product-card-price">
+    <span class="price-current">{{ product.price | money_without_trailing_zeros }}</span>
+  </div>
+{%- endif -%}
