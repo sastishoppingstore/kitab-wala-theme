@@ -7,9 +7,9 @@
   <div class="app-arrivals-header">
     <h2 class="app-arrivals-title">
       {%- if request.locale.iso_code == 'ur' -%}
-        {{ section.settings.title_ur | default: 'نئی کتابیں' }}
+        {{ section.settings.title_ur | default: 'کتابیں' }}
       {%- else -%}
-        {{ section.settings.title_en | default: 'New Books' }}
+        {{ section.settings.title_en | default: 'Book' }}
       {%- endif -%}
     </h2>
     <a href="{{ section.settings.collection_url | default: '/collections/new-arrivals' }}" class="app-arrivals-view">
@@ -61,13 +61,13 @@
       "type": "text",
       "id": "title_ur",
       "label": "Section Title (Urdu)",
-      "default": "نئی کتابیں"
+      "default": "کتابیں"
     },
     {
       "type": "text",
       "id": "title_en",
       "label": "Section Title (English)",
-      "default": "New Books"
+      "default": "Book"
     },
     {
       "type": "collection",
@@ -111,8 +111,8 @@
     {
       "name": "Featured Products",
       "settings": {
-        "title_ur": "نئی کتابیں",
-        "title_en": "New Books"
+        "title_ur": "کتابیں",
+        "title_en": "Book"
       }
     }
   ]
