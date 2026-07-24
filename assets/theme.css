@@ -2125,9 +2125,26 @@ button {
 }
 
 .app-arrivals-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  --slider-gap: 12px;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: var(--slider-gap);
+  padding: 4px 4px 16px;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+}
+
+.app-arrivals-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome, Safari, Opera */
+}
+
+.app-arrivals-grid .app-card {
+  flex: 0 0 calc(50% - (var(--slider-gap) / 2));
+  min-width: calc(50% - (var(--slider-gap) / 2));
+  scroll-snap-align: start;
 }
 
 .app-arrivals-footer {

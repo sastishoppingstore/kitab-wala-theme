@@ -325,8 +325,7 @@
   }
 
   .app-arrivals-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    --slider-gap: 16px;
   }
 
   .app-arrivals {
@@ -372,8 +371,7 @@
   }
 
   .app-arrivals-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    --slider-gap: 20px;
   }
 
   .app-arrivals {
@@ -405,25 +403,11 @@
 
 }
 
-/* Mobile grid-to-slider layout overrides showing exactly 2 books at a time */
+/* Mobile full-bleed slider adjustment */
 @media screen and (max-width: 767px) {
   .app-arrivals-grid {
-    display: flex !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
-    scroll-behavior: smooth !important;
-    -webkit-overflow-scrolling: touch !important;
-    gap: 12px !important;
     padding: 4px 12px 16px 12px !important;
-    margin: 0 -10px !important;
-    scrollbar-width: none !important;
-  }
-  .app-arrivals-grid::-webkit-scrollbar {
-    display: none !important;
-  }
-  .app-arrivals-grid .app-card {
-    flex: 0 0 calc(50% - 6px) !important;
-    min-width: calc(50% - 6px) !important;
-    scroll-snap-align: start !important;
+    margin-left: -12px !important;
+    margin-right: -12px !important;
   }
 }

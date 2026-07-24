@@ -7,7 +7,7 @@
   <div class="app-arrivals-header">
     <h2 class="app-arrivals-title">
       {%- if request.locale.iso_code == 'ur' -%}
-        {{ section.settings.title_ur | default: 'زیادہ فروخت ہونے والی' }}
+        {{ section.settings.title_ur | default: 'ٹاپ سیلر' }}
       {%- else -%}
         {{ section.settings.title_en | default: 'Top Seller' }}
       {%- endif -%}
@@ -56,7 +56,7 @@
       "type": "text",
       "id": "title_ur",
       "label": "Section Title (Urdu)",
-      "default": "زیادہ فروخت ہونے والی"
+      "default": "ٹاپ سیلر"
     },
     {
       "type": "text",
@@ -106,7 +106,7 @@
     {
       "name": "Best Selling Books",
       "settings": {
-        "title_ur": "زیادہ فروخت ہونے والی",
+        "title_ur": "ٹاپ سیلر",
         "title_en": "Top Seller"
       }
     }

@@ -39,7 +39,8 @@
       "featured-products": {
         "type": "featured-products",
         "settings": {
-          "title_ur": "نئی کتابیں",
+          "title_ur": "نمایاں کتابیں",
+          "title_en": "Featured Book",
           "collection": "",
           "collection_url": "",
           "view_all_label": "سب دیکھیں",
@@ -50,7 +51,8 @@
       "best-selling": {
         "type": "best-selling",
         "settings": {
-          "title_ur": "زیادہ فروخت ہونے والی کتابیں",
+          "title_ur": "ٹاپ سیلر",
+          "title_en": "Top Seller",
           "collection": "",
           "collection_url": "",
           "view_all_label": "سب دیکھیں",
@@ -81,7 +83,8 @@
       "discounted-products": {
         "type": "discounted-products",
         "settings": {
-          "title_ur": "رعایتی قیمت والی کتابیں",
+          "title_ur": "نئی کتابیں",
+          "title_en": "New Book",
           "collection": "",
           "collection_url": "",
           "view_all_label": "سب دیکھیں",
