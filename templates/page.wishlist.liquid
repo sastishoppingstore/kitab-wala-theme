@@ -1,0 +1,155 @@
+{% comment %}
+  KITAB WALA - WISHLIST PAGE TEMPLATE
+  Displays products added to the user's custom wishlist in localStorage.
+{% endcomment %}
+
+<div class="wishlist-container" style="max-width: 1100px; margin: 40px auto; padding: 0 20px; font-family: 'Inter', sans-serif;">
+  <h1 class="wishlist-title" style="font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: {% if request.locale.iso_code == 'ur' %}right{% else %}left{% endif %}; color: var(--color-primary);">
+    {%- if request.locale.iso_code == 'ur' -%}پسندیدہ کتابیں{%- else -%}Favorite Books{%- endif -%}
+  </h1>
+
+  <div id="wishlist-empty-msg" style="display: none; background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 40px 20px; text-align: center; flex-direction: column; align-items: center; gap: 16px;">
+    <span style="font-size: 3rem;">❤️</span>
+    <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--color-text-main);">
+      {%- if request.locale.iso_code == 'ur' -%}ابھی تک کوئی پسندیدہ کتابیں محفوظ نہیں کی گئیں۔{%- else -%}No favorite books saved yet{%- endif -%}
+    </h2>
+    <a href="/" class="btn btn-primary" style="background: var(--color-primary); color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; margin-top: 10px;">
+      {%- if request.locale.iso_code == 'ur' -%}خریداری کریں{%- else -%}Browse Books{%- endif -%}
+    </a>
+  </div>
+
+  <div id="wishlist-grid" class="app-arrivals-grid">
+    <!-- Dynamically loaded from localStorage -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('wishlist-grid');
+    const emptyMsg = document.getElementById('wishlist-empty-msg');
+    const isUrdu = document.documentElement.lang === 'ur' || window.location.pathname.startsWith('/ur');
+
+    function renderWishlist() {
+      const items = JSON.parse(localStorage.getItem('kw-wishlist-items') || '[]');
+
+      if (items.length === 0) {
+        grid.style.display = 'none';
+        emptyMsg.style.display = 'flex';
+        return;
+      }
+
+      grid.style.display = 'grid';
+      emptyMsg.style.display = 'none';
+      grid.innerHTML = '';
+
+      items.forEach(function(item) {
+        const card = document.createElement('article');
+        card.className = 'app-card';
+        card.setAttribute('data-product-id', item.id);
+
+        card.innerHTML = `
+          <div class="app-card-image">
+            <button class="product-card-wishlist active" data-product-id="${item.id}" aria-label="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+            <div class="app-card-podium"></div>
+            <a href="${item.url}">
+              ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy">` : `<span style="font-size:3rem;">📚</span>`}
+            </a>
+          </div>
+          <div class="app-card-body" style="text-align: ${isUrdu ? 'right' : 'left'};">
+            <a href="${item.url}" class="app-card-title">${item.title}</a>
+            <div class="app-card-rating" style="justify-content: ${isUrdu ? 'flex-end' : 'flex-start'};">
+              <span class="app-star" style="color:#f5a623;">★</span>
+              <span class="app-star" style="color:#f5a623;">★</span>
+              <span class="app-star" style="color:#f5a623;">★</span>
+              <span class="app-star" style="color:#f5a623;">★</span>
+              <span class="app-star" style="color:#f5a623;">★</span>
+              <span class="app-rating-count">(4.5)</span>
+            </div>
+            <div class="app-card-price">
+              <span class="app-price-current">${item.price}</span>
+            </div>
+            <div class="app-card-actions">
+              <button class="app-btn-cart" data-add-to-cart data-variant-id="${item.variantId}" data-product-id="${item.id}">
+                ${isUrdu ? 'کارٹ میں ڈالیں' : 'Add to Cart'}
+              </button>
+              <a href="${item.url}" class="app-btn-order">
+                ${isUrdu ? 'ابھی خریدیں' : 'Order Now'}
+              </a>
+            </div>
+          </div>
+        `;
+
+        // Attach wishlist toggle logic to remove it instantly
+        card.querySelector('.product-card-wishlist').addEventListener('click', function(e) {
+          e.preventDefault();
+          let wishlistItems = JSON.parse(localStorage.getItem('kw-wishlist-items') || '[]');
+          const wishlist = JSON.parse(localStorage.getItem('kw-wishlist') || '[]');
+
+          const idx = wishlist.indexOf(item.id);
+          if (idx > -1) wishlist.splice(idx, 1);
+          wishlistItems = wishlistItems.filter(i => i.id !== item.id);
+
+          localStorage.setItem('kw-wishlist', JSON.stringify(wishlist));
+          localStorage.setItem('kw-wishlist-items', JSON.stringify(wishlistItems));
+
+          card.remove();
+          if (wishlistItems.length === 0) {
+            grid.style.display = 'none';
+            emptyMsg.style.display = 'flex';
+          }
+          
+          if (typeof showToast === 'function') {
+            showToast(isUrdu ? 'پسندیدہ سے نکال دیا گیا' : 'Removed from favorites');
+          }
+        });
+
+        // Attach AJAX add-to-cart trigger
+        card.querySelector('[data-add-to-cart]').addEventListener('click', async function(e) {
+          e.preventDefault();
+          const btn = e.currentTarget;
+          const varId = btn.dataset.variantId;
+          if (!varId) return;
+
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<span class="spinner"></span>';
+          btn.disabled = true;
+
+          try {
+            const res = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: varId, quantity: 1 })
+            });
+            const data = await res.json();
+            if (data.id) {
+              if (typeof showToast === 'function') {
+                showToast(isUrdu ? 'کارٹ میں شامل ہو گیا ✓' : 'Added to cart ✓');
+              }
+              
+              // update global cart count
+              const cartRes = await fetch('/cart.js');
+              const cart = await cartRes.json();
+              document.querySelectorAll('.cart-item-count').forEach(el => {
+                el.textContent = cart.item_count;
+                el.style.display = cart.item_count > 0 ? 'flex' : 'none';
+              });
+            }
+          } catch (err) {
+            if (typeof showToast === 'function') {
+              showToast(isUrdu ? 'خرابی! دوبارہ کوشش کریں' : 'Error! Please try again', 'error');
+            }
+          }
+
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    renderWishlist();
+  });
+</script>
