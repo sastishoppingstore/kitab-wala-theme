@@ -410,4 +410,14 @@
     margin-left: -12px !important;
     margin-right: -12px !important;
   }
+
+}
+
+/* Hide wishlist heart icon in header (e.g. injected by apps) */
+.site-header [href*="wishlist"],
+.site-header [class*="wishlist"],
+.site-header [id*="wishlist"],
+.swym-wishlist-header-button,
+.swym-header-icon {
+  display: none !important;
 }
