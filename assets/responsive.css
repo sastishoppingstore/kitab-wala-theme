@@ -422,11 +422,3 @@
   display: none !important;
 }
 
-/* Hide Swym app's auto-injected duplicate heart buttons, keeping only our custom styled heart */
-button.swym-button:not(.product-card-wishlist),
-.swym-btn-container,
-.swym-button-bar,
-.swym-add-to-wishlist,
-.swym-wishlist-button-bar {
-  display: none !important;
-}
