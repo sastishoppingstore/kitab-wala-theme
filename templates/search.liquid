@@ -1,0 +1,85 @@
+{% comment %}KITAB WALA - SEARCH RESULTS PAGE{% endcomment %}
+
+{% paginate search.results by 24 %}
+<div class="collection-page search-page" style="max-width: 1100px; margin: 40px auto; padding: 0 20px;">
+  
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" style="font-size:0.8rem;color:var(--color-text-light);margin-bottom:16px; text-align: {% if request.locale.iso_code == 'ur' %}right{% else %}left{% endif %};">
+    <a href="{{ routes.root_url }}" style="color:var(--color-orange); text-decoration: none;">
+      {%- if request.locale.iso_code == 'ur' -%}ہوم{%- else -%}Home{%- endif -%}
+    </a>
+    <span style="margin:0 6px;">›</span>
+    <span>
+      {%- if request.locale.iso_code == 'ur' -%}تلاش کے نتائج{%- else -%}Search Results{%- endif -%}
+    </span>
+  </nav>
+
+  <!-- Header -->
+  <div class="search-header" style="margin-bottom: 30px; text-align: {% if request.locale.iso_code == 'ur' %}right{% else %}left{% endif %};">
+    <h1 style="font-size:1.8rem; color:var(--color-primary); margin-bottom: 12px; {% if request.locale.iso_code == 'ur' %}font-family:'Noto Nastaliq Urdu',serif;direction:rtl;{% endif %}">
+      {%- if request.locale.iso_code == 'ur' -%}
+        تلاش کے نتائج برائے: "{{ search.terms }}"
+      {%- else -%}
+        Search Results for: "{{ search.terms }}"
+      {%- endif -%}
+    </h1>
+    <p style="font-size:0.9rem; color:var(--color-text-secondary); margin: 0;">
+      {{ search.results_count }} 
+      {%- if request.locale.iso_code == 'ur' -%}کتابیں ملیں{%- else -%}books found{%- endif -%}
+    </p>
+  </div>
+
+  {%- if search.performed and search.results_count > 0 -%}
+    <div class="products-grid" style="padding:0;">
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}
+          {% render 'product-card', product: item %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Pagination -->
+    {%- if paginate.pages > 1 -%}
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap;">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="btn btn-outline" style="padding:8px 16px;">
+            ← {%- if request.locale.iso_code == 'ur' -%}پچھلا{%- else -%}Previous{%- endif -%}
+          </a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" style="padding:8px 14px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-text-primary);text-decoration:none;">{{ part.title }}</a>
+          {%- else -%}
+            <span style="padding:8px 14px;background:var(--color-primary);color:white;border-radius:6px;">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="btn btn-outline" style="padding:8px 16px;">
+            {%- if request.locale.iso_code == 'ur' -%}اگلا{%- else -%}Next{%- endif -%} →
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  {%- else -%}
+    <!-- Empty State -->
+    <div style="background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 60px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <span style="font-size: 3rem;">🔍</span>
+      <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--color-text-main);">
+        {%- if request.locale.iso_code == 'ur' -%}کوئی کتاب نہیں ملی{%- else -%}No books matched your search{%- endif -%}
+      </h2>
+      <p style="font-size:0.9rem; color:var(--color-text-secondary); max-width: 400px; margin: 0; line-height: 1.5;">
+        {%- if request.locale.iso_code == 'ur' -%}
+          براہ کرم دوسرے الفاظ استعمال کریں یا ہماری فہرست کو براؤز کریں۔
+        {%- else -%}
+          Please try checking your spelling or use more general keywords.
+        {%- endif -%}
+      </p>
+      <a href="/" class="btn btn-primary" style="background: var(--color-primary); color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; margin-top: 10px;">
+        {%- if request.locale.iso_code == 'ur' -%}ہوم پر واپس جائیں{%- else -%}Go Back Home{%- endif -%}
+      </a>
+    </div>
+  {%- endif -%}
+
+</div>
+{% endpaginate %}
